@@ -41,8 +41,6 @@
 </template>
 <script>
 
-    import Default from './inputs/Default.vue';
-
     export default {
         props: ['itemphonearray', 'chave'],
         data() {
@@ -108,9 +106,6 @@
                     this.$parent.items.splice(this.chave, 0, it)
                 }
             }
-        },
-        components: {
-            Default,
         }
     }
 

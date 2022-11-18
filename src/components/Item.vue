@@ -130,6 +130,11 @@
         color: #000;
     }
 
+    .infos .price {
+        font-weight: 700;
+        color: #000;
+    }
+
     .infos .description {
         font-size: 7pt;
         padding: 0 10px;
