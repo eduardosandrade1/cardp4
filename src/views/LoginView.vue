@@ -10,13 +10,21 @@
                     Login
                 </div>
                 <div class="input-group">
-                    <input type="email" placeholder="Email">
+                    <input type="email" placeholder="Email" v-model="email">
                 </div>
                 <div class="input-group">
-                    <input type="password" placeholder="Senha">
+                    <input type="password" placeholder="Senha" v-model="password">
                 </div>
+
+                <span class="text-danger" v-if="error">
+                    {{ error }}
+                </span>
+
                 <div class="enter">
-                    <a class="btn-enter" href="/menu">Entrar</a>
+                    <button class="btn-enter" @click="doLogin()">Entrar</button>
+                </div>
+                <div class="without-login">
+                    <a class="btn-enter" href="/menu">Entrar sem login</a>
                 </div>
             </div>
         </div>
@@ -33,6 +41,54 @@
     </div>
 
 </template>
+
+<script>
+
+    import Auth from '../services/auth';
+
+    export default {
+        data() {
+            return {
+                error: ''
+            }
+        },
+
+        mounted() {
+            // Users.listar().then(response => {
+                
+            // })
+        },
+        methods: {
+            doLogin() {
+                let email = this.email;
+                let psswd = this.password;
+                Auth.doAuth({
+
+                    email: email,
+                    password: psswd,
+
+                }).then(response => {
+                    if (200 === response.status) {
+                        let data = response.data
+                        if (data.access_token)
+                            sessionStorage.setItem('access_tk', data.access_token)
+                        
+                        if (data.idp) 
+                            sessionStorage.setItem('idp', data.idp)
+
+                        window.location.href = '/menu'
+                    }
+                }).catch(er => {
+                    this.error = "Email ou senha inválidos"
+                    this.email = ''
+                    this.password = ''
+                })
+            }
+        }
+
+    }
+
+</script>
 
 <style scoped>
     .container__login {
@@ -106,6 +162,12 @@
         border-radius: 11px;
         border: none;
         color: white;
+        cursor: pointer;
+    }
+    
+    .container__login .login-area .container-center .enter .btn-enter:hover {
+        transition: width 2s, height 2s, background-color 2s, transform 2s;
+        background-color: rgb(0, 0, 0);
     }
 
     .container__login .explain-area {

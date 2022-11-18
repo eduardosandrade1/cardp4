@@ -8,12 +8,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      beforeEnter: ((to, from, next) => {
+        let isAuthenticated = sessionStorage.getItem('access_tk');
+        if (to.name !== 'login' && !isAuthenticated) 
+          next({ name: 'login' })
+        else next()
+      })
     },
     {
       path: '/menu',
       name: 'menu',
-      component: MenuView
+      component: MenuView,
     },
     // {
     //   path: '/about',

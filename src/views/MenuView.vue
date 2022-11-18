@@ -5,3 +5,13 @@ import MenuVue from '../components/MenuVue.vue'
 <template>
     <MenuVue />
 </template>
+
+<script>
+
+export default {
+    
+    
+
+}
+
+</script>
