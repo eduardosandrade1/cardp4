@@ -143,7 +143,7 @@
     
     .btn-primary {
       margin: 10px;
-      font-size: 28px;
+      font-size: 24px;
       width: 100px;
       height: 50px;
       padding: 5px;
