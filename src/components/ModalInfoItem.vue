@@ -26,13 +26,13 @@
                         <input type="number" name="" step='0.01' maxlength="20" placeholder="Preço" v-model="itemPrice">
                         <label>Preço</label>
                     </div>
-                    <textarea name="" id="" cols="30" rows="10" maxlength="40" placeholder="Descrição..." v-model="description"></textarea>
+                    <textarea name="" id="" cols="30" rows="3" maxlength="40" placeholder="Descrição..." v-model="description"></textarea>
                 </div>
 
             </div>
             <div class="footer">
                 <button class="btn btn-primary btn-lg" @click="closeModal()">
-                    Fechar
+                  <span>Fechar</span>
                 </button>
             </div>
         </div>
@@ -106,7 +106,7 @@
                     this.$parent.items.splice(this.chave, 0, it)
                 }
             }
-        }
+        },
     }
 
 </script>

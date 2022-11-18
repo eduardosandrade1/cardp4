@@ -1,182 +1,192 @@
 <template>
 
-    <div class="container">
-        <div class="page" id="first">
-            <div class="back">
-                <div class="outer">
-                    <div class="content">
-                        <img src="https://tympanus.net/Development/BookBlock/images/demo1/1.jpg">
-                    </div>
+    <div class="container__login">
+        <div class="login-area">
+            <div class="container-center ">
+                <div class="logo">
+                    <img src="../assets/logo.png" alt="" srcset="" id="img-logo">
                 </div>
-            </div>
-        </div>
-        <div class="page second" id="second">
-            <div class="front">
-                <div class="outer">
-                    <div class="content">
-                        <img src="https://tympanus.net/Development/BookBlock/images/demo1/1.jpg">
-                    </div>
+                <div class="text-logo">
+                    Login
                 </div>
-            </div>
-            <div class="back" id="third">
-                <div class="outer">
-                    <div class="content">
-                        <div class="helper-class-to-make-bug-visbile">
-                            <img src="https://tympanus.net/Development/BookBlock/images/demo1/2.jpg">
-                        </div>
-                    </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" v-model="email">
                 </div>
-            </div>
-        </div>
-        <div class="page" id="fourth">
-            <div class="front">
-                <div class="outer">
-                    <div class="content">
-                        <img src="https://tympanus.net/Development/BookBlock/images/demo1/2.jpg">
-                    </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Senha" v-model="password">
                 </div>
-            </div>
-        </div>
 
-        <div id="prev" @click="prevImg()"></div>
-        <div id="next" @click="nextImg()"></div>
+                <span class="text-danger" v-if="error">
+                    {{ error }}
+                </span>
+
+                <div class="enter">
+                    <button class="btn-enter" @click="doLogin()">Entrar</button>
+                </div>
+                <div class="without-login">
+                    <a class="btn-enter" href="/menu">Entrar sem login</a>
+                </div>
+            </div>
+        </div>
+        <div class="explain-area">
+            <div class="text">
+                <p>
+                    Este é o cardápio online :)
+                </p>
+                <p>
+                    Faça um você mesmo!
+                </p>
+            </div>
+        </div>
     </div>
 
 </template>
 
 <script>
 
+    import Auth from '../services/auth';
 
-export default {
-    methods: {
-        nextImg() {
-            this.$refs.second.style.msTransform = "rotateY(-180deg)";
-            this.$refs.second.style.webkitTransform = "rotateY(-180deg)";
-            this.$refs.second.style.transform = "rotateY(-180deg)";
+    export default {
+        data() {
+            return {
+                error: ''
+            }
         },
-        prevImg() {
-            this.$refs.second.style.msTransform = "rotateY(0deg)";
-            this.$refs.second.style.webkitTransform = "rotateY(0deg)";
-            this.$refs.second.style.transform = "rotateY(0deg)";
+
+        mounted() {
+            // Users.listar().then(response => {
+                
+            // })
+        },
+        methods: {
+            doLogin() {
+                let email = this.email;
+                let psswd = this.password;
+                Auth.doAuth({
+
+                    email: email,
+                    password: psswd,
+
+                }).then(response => {
+                    if (200 === response.status) {
+                        let data = response.data
+                        if (data.access_token)
+                            sessionStorage.setItem('access_tk', data.access_token)
+                        
+                        if (data.idp) 
+                            sessionStorage.setItem('idp', data.idp)
+
+                        window.location.href = '/menu'
+                    }
+                }).catch(er => {
+                    this.error = "Email ou senha inválidos"
+                    this.email = ''
+                    this.password = ''
+                })
+            }
         }
+
     }
-}
 
 </script>
 
-<style>
-
-    body {
-        margin: 4em;
+<style scoped>
+    .container__login {
+        display: flex;
+        justify-content: space-between;
+        width: 56vw;
+        height: 80vh;
+        margin: auto;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        background-color: #F8F8F8;
+    }
+    #img-logo {
+        width: 30%;
+        text-align: center;
     }
 
-    .container {
+    .logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .text-logo {
+        font-size: 32px;
+    }
+
+    .container__login .login-area {
+        width: 50%;
+        border-radius: 15px 0 0 15px;
+        margin: auto;
+    }
+
+    .container__login .login-area .container-center {
         width: 400px;
         height: 300px;
-        position: relative;
-
-        z-index: 100;
-        -webkit-perspective: 1300px;
-        perspective: 1300px;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
-    .page {
-        position: absolute;
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-        -webkit-transition-property: -webkit-transform;
-        transition-property: transform;
-
-        width: 50%;
-        height: 100%;
-        left: 50%;
-        -webkit-transform-origin: left center;
-        transform-origin: left center;
-    }
-
-    #first,
-    #first .back {
-        -webkit-transform: rotateY(180deg);
-        transform: rotateY(180deg);
-    }
-
-    #first {
-        z-index: 102;
-    }
-    #second {
-        z-index: 103;
-        transition: transform 0.8s ease-in-out;
-    }
-    #third .content {
-        width: 400px;
-    }
-    #fourth {
-        z-index: 101;
-    }
-
-    .page > div,
-    .outer,
-    .content,
-    .helper-class-to-make-bug-visbile {
-        position: absolute;
-        height: 100%;
+    .container__login .login-area .container-center .input-group{
         width: 100%;
-        top: 0;
-        left: 0;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
     }
-
-    .page > div {
+    .container__login .login-area .container-center .input-group input {
+        outline:none;
+        box-shadow: none;
+        border: none;
+        border-radius: 3px;
+        background-color: transparent;
+        border-bottom: 1px solid #909090;
+        height: 37.4px;
         width: 100%;
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
+        font-weight: 600;
+        font-size: 20px;
     }
 
-    .back {
-        -webkit-transform: rotateY(-180deg);
-        transform: rotateY(-180deg);
+    .container__login .login-area .container-center .input-group {
+        padding: 10px;
     }
 
-    .outer {
-        width: 100%;
-        overflow: hidden;
-        z-index: 999;
+    .container__login .login-area .container-center .enter {
+        margin: 10px auto;
     }
-
-    /* problematic class: `.content` */
-    .content {
-        width: 200%;
-        background: red;
-    }
-
-
-    .front .content {
-        left: -100%;
-    }
-
-
-
-    /* controls */
-    #prev, #next {
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        z-index: 999;
-    }
-    #prev:hover, #next:hover {
-        background: rgba(0,0,0,0.05);
+    .container__login .login-area .container-center .enter .btn-enter {
+        padding: 10px 100px;
+        height: 48.52px;
+        background-color: rgba(0, 0, 0, 0.79);
+        font-size: 20px;
+        border-radius: 11px;
+        border: none;
+        color: white;
         cursor: pointer;
     }
-    #prev {
-        top: 0;
-        left: 0;
-    }
-    #next {
-        top: 0;
-        left: 50%;
+    
+    .container__login .login-area .container-center .enter .btn-enter:hover {
+        transition: width 2s, height 2s, background-color 2s, transform 2s;
+        background-color: rgb(0, 0, 0);
     }
 
+    .container__login .explain-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        width: 50%;
+        height: 100%;
+        background: url('../assets/images/explain-bg.jpg');
+        background-color: rgba(0, 0, 0, 0.507);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-blend-mode: darken;
+        border-radius: 0 15px 15px 0;
+    }
+
+    .container__login .explain-area .text{
+        color: white;
+        font-size: 36px;
+    }
 </style>

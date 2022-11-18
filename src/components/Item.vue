@@ -64,7 +64,9 @@
                 this.$parent.toTrash(this.chave)
             },
             showInfoDiv(typeItem, indexElement) {
-                this.$parent.showInfoDiv(typeItem, indexElement)
+                if (typeof typeItem != 'undefined' && typeof indexElement != 'undefined') {
+                    this.$parent.showInfoDiv(typeItem, indexElement)
+                }
             },
         },
         components: {
@@ -126,25 +128,26 @@
     }
 
     .infos .title {
-        font-weight: 700;
-        color: #000;
-    }
-
-    .infos .price {
-        font-weight: 700;
+        font-weight: 800;
+        font-size: 12pt;
         color: #000;
     }
 
     .infos .description {
-        font-size: 7pt;
+        font-size: 8pt;
         padding: 0 10px;
         margin-left: 4px;
         color: #000;
         white-space: pre;
+        font-weight: 500;
+
     }
     .infos .top-titles {
         display: flex;
         justify-content: space-between;
         padding: 0 15px;
+    }
+    .infos .top-titles .price {
+        font-weight: 500;
     }
 </style>
