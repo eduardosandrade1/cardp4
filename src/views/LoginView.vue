@@ -29,14 +29,20 @@
             </div>
         </div>
         <div class="explain-area">
-            <div class="text">
-                <p>
-                    Este é o cardápio online :)
-                </p>
-                <p>
-                    Faça um você mesmo!
-                </p>
+            <div class="content">
+                <div class="text">
+                    <p>
+                        Este é o cardápio online :)
+                    </p>
+                    <p>
+                        Faça um você mesmo!
+                    </p>
+                </div>
+                <div class="btn-register">
+                    <button>Ir para o cadastro</button>
+                </div>                
             </div>
+
         </div>
     </div>
 
@@ -51,12 +57,6 @@
             return {
                 error: ''
             }
-        },
-
-        mounted() {
-            // Users.listar().then(response => {
-                
-            // })
         },
         methods: {
             doLogin() {
@@ -166,7 +166,7 @@
     }
     
     .container__login .login-area .container-center .enter .btn-enter:hover {
-        transition: width 2s, height 2s, background-color 2s, transform 2s;
+        transition: width 1s, height 2s, background-color 2s, transform 2s;
         background-color: rgb(0, 0, 0);
     }
 
@@ -180,13 +180,38 @@
         background: url('../assets/images/explain-bg.jpg');
         background-color: rgba(0, 0, 0, 0.507);
         background-repeat: no-repeat;
-        background-size: 100%;
+        background-size: cover;
         background-blend-mode: darken;
         border-radius: 0 15px 15px 0;
     }
 
     .container__login .explain-area .text{
         color: white;
-        font-size: 36px;
+        /* font-size: 36px; */
+        font-size: 2.1vw;
+    }
+    .container__login .explain-area .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container__login .explain-area .content .btn-register button {
+        padding: 10px 100px;
+        height: 48.52px;
+        background-color: #F8F8F8;
+        font-size: 20px;
+        border-radius: 11px;
+        border: none;
+        color: rgba(0, 0, 0, 0.79);
+        cursor: pointer;
+    }
+
+    .container__login .explain-area .content .btn-register {
+        margin: 150px auto 0 auto;
+    }
+    
+    .container__login .explain-area .content .btn-register button:hover {
+        transition: width 1s, height 2s, background-color 2s, transform 2s;
+        background-color: rgb(190, 190, 190);
     }
 </style>

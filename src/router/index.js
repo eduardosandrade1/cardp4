@@ -10,9 +10,10 @@ const router = createRouter({
       name: 'login',
       component: LoginView,
       beforeEnter: ((to, from, next) => {
-        let isAuthenticated = sessionStorage.getItem('access_tk');
-        if (to.name !== 'login' && !isAuthenticated) 
-          next({ name: 'login' })
+
+        let isAuthenticated = sessionStorage.getItem('access_tk') ?? true;
+        console.log(isAuthenticated)
+        if (to.name !== 'login' && !isAuthenticated) next({ name: 'login' })
         else next()
       })
     },

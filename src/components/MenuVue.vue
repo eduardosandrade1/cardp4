@@ -16,13 +16,14 @@
       <ModalInfoItem v-if="showmodal" :itemphonearray="itemphonearray" :chave="chaveArrItem" />
       <div class="space-empty" v-else></div>
   
-  
+      <button @click="save()">save</button>
     </div>
   
   </template>
   
   <script>
     import { ref } from 'vue';
+    import Menu from '../services/menu';
     import Phone from './Phone.vue';
     import MenuSize from './MenuSize.vue';
     import ModalInfoItem from './ModalInfoItem.vue';
@@ -120,6 +121,13 @@
             this.chaveArrItem = indexElement;
             this.itemphonearray = this.items[indexElement]
         },
+        save() {
+          Menu.save(this.items).then(res => {
+            console.log('succ: ', res)
+          }).catch(err => {
+            console.log('erro: ', err)
+          })
+        }
       }
     }
   
