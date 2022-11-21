@@ -40,9 +40,7 @@ export default {
             }
 
             menu.get(this.$route.params.id, headers).then(res => {
-                console.log(res)
                 this.items = res.data;
-
             }).catch(failed => {
               console.log(failed)
             });

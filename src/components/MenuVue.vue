@@ -1,10 +1,15 @@
 <template>
     <div id="container__items">
       
-      <MenuSize
-        @dragenter.prevent
-        @dragover.prevent 
-      />
+      <div class="actions">
+        <MenuSize
+          @dragenter.prevent
+          @dragover.prevent 
+        />
+        <button class="btn btn-primary btn-lg" @click="save()">
+          Salvar
+        </button>
+      </div>
   
       <Phone
         @dragenter.prevent
@@ -16,7 +21,6 @@
       <ModalInfoItem v-if="showmodal" :itemphonearray="itemphonearray" :chave="chaveArrItem" />
       <div class="space-empty" v-else></div>
   
-      <button @click="save()">save</button>
     </div>
   
   </template>
@@ -26,6 +30,7 @@
     import Phone from './Phone.vue';
     import MenuSize from './MenuSize.vue';
     import ModalInfoItem from './ModalInfoItem.vue';
+    import Modal from './Modal.vue';
 
     import menu from '../services/menu';
   
@@ -34,7 +39,7 @@
         return {
           items : [],
           showmodal: false,
-          itemphonearray: '',
+          itemphonearray: null,
           MenuItems: this.GenListDefault('', 1),
           chaveArrItem: 0,
         }
@@ -43,6 +48,7 @@
         Phone,
         MenuSize,
         ModalInfoItem,
+        Modal,
       },
       methods: {
         getMenu() {
@@ -140,7 +146,6 @@
             }
             menu.get(sessionStorage.getItem('ID'), headers).then(res => {
               this.items = res.data;
-              console.log(res.data)
             }).catch(failed => {
               console.log(failed)
             });
@@ -187,11 +192,16 @@
         transition: 0.5s;
     }
     .btn-lg {
-      width: 100%;
+      width: 95%;
     }
     .space-empty {
       width: 400px;
       height: 700px;
+    }
+    .actions {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
     }
   </style>
   
