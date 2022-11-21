@@ -10,7 +10,9 @@ import MenuVue from '../components/MenuVue.vue'
 
 export default {
     
-    
+    computed() {
+        console.log('acessou aqui')
+    }
 
 }
 

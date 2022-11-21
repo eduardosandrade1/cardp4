@@ -122,7 +122,9 @@
             this.itemphonearray = this.items[indexElement]
         },
         save() {
-          Menu.save(this.items).then(res => {
+          let id = 0;
+          if (sessionStorage.getItem('ID')) id = sessionStorage.getItem('ID')
+          Menu.save(this.items, id).then(res => {
             console.log('succ: ', res)
           }).catch(err => {
             console.log('erro: ', err)

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MenuView from '../views/MenuView.vue'
 import LoginView from '../views/LoginView.vue'
+import Menu from '../services/menu'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,7 @@ const router = createRouter({
       beforeEnter: ((to, from, next) => {
 
         let isAuthenticated = sessionStorage.getItem('access_tk') ?? true;
-        console.log(isAuthenticated)
+
         if (to.name !== 'login' && !isAuthenticated) next({ name: 'login' })
         else next()
       })
@@ -21,6 +22,9 @@ const router = createRouter({
       path: '/menu',
       name: 'menu',
       component: MenuView,
+      beforeEnter: () => {
+
+      }
     },
     // {
     //   path: '/about',

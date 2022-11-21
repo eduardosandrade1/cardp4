@@ -38,9 +38,6 @@
                         Faça um você mesmo!
                     </p>
                 </div>
-                <div class="btn-register">
-                    <button>Ir para o cadastro</button>
-                </div>                
             </div>
 
         </div>
@@ -70,11 +67,10 @@
                 }).then(response => {
                     if (200 === response.status) {
                         let data = response.data
-                        if (data.access_token)
+                        if (data.access_token) {
                             sessionStorage.setItem('access_tk', data.access_token)
-                        
-                        if (data.idp) 
-                            sessionStorage.setItem('idp', data.idp)
+                            sessionStorage.setItem('ID', data.ID)
+                        }
 
                         window.location.href = '/menu'
                     }
@@ -116,7 +112,6 @@
     }
 
     .container__login .login-area {
-        width: 50%;
         border-radius: 15px 0 0 15px;
         margin: auto;
     }
@@ -206,12 +201,4 @@
         cursor: pointer;
     }
 
-    .container__login .explain-area .content .btn-register {
-        margin: 150px auto 0 auto;
-    }
-    
-    .container__login .explain-area .content .btn-register button:hover {
-        transition: width 1s, height 2s, background-color 2s, transform 2s;
-        background-color: rgb(190, 190, 190);
-    }
 </style>
