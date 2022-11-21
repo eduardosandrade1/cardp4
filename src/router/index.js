@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MenuView from '../views/MenuView.vue'
 import LoginView from '../views/LoginView.vue'
-import Menu from '../services/menu'
+import ViewMenuView from '../views/ViewMenuView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,7 +24,12 @@ const router = createRouter({
       component: MenuView,
       beforeEnter: () => {
 
-      }
+      },
+    },
+    {
+      path: '/menu/:id',
+      name: 'menuItem',
+      component: ViewMenuView,
     },
     // {
     //   path: '/about',

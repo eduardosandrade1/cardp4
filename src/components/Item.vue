@@ -1,7 +1,7 @@
 <template>
     <div class="input_item_div border-tb bg-transparent" v-if="type == 'input'">
         <input :value="value" readonly placeholder="Título"  @click="showInfoDiv(type, chave)" />
-        <IconActionItem :place_item="place_item" :chave="chave" />
+        <IconActionItem :place_item="place_item" :chave="chave" v-show="showAction" />
 
     </div>
     
@@ -9,7 +9,7 @@
         <label class="custom-file-upload" @click="showInfoDiv(type, chave)">
             <img :alt="alt" :src="src" class="img-size">
         </label>
-        <IconActionItem :place_item="place_item" :chave="chave" />
+        <IconActionItem :place_item="place_item" :chave="chave" v-show="showAction" />
 
     </div>
 
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <IconActionItem :place_item="place_item" :chave="chave" />
+        <IconActionItem :place_item="place_item" :chave="chave" v-show="showAction" />
     </div>
 
 </template>
@@ -41,7 +41,7 @@
 
     export default {
         name: "Item",
-        props: ['type', 'src', 'alt', 'value', 'place_item', 'chave', 'name', 'description', 'price'],
+        props: ['showAction', 'type', 'src', 'alt', 'value', 'place_item', 'chave', 'name', 'description', 'price'],
         data() {
             return {
 
@@ -64,7 +64,7 @@
                 this.$parent.toTrash(this.chave)
             },
             showInfoDiv(typeItem, indexElement) {
-                if (typeof typeItem != 'undefined' && typeof indexElement != 'undefined') {
+                if (typeof typeItem != 'undefined' && typeof indexElement != 'undefined' && this.showAction !== false) {
                     this.$parent.showInfoDiv(typeItem, indexElement)
                 }
             },

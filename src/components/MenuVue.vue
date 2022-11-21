@@ -22,11 +22,12 @@
   </template>
   
   <script>
-    import { ref } from 'vue';
     import Menu from '../services/menu';
     import Phone from './Phone.vue';
     import MenuSize from './MenuSize.vue';
     import ModalInfoItem from './ModalInfoItem.vue';
+
+    import menu from '../services/menu';
   
     export default {
       data() {
@@ -129,6 +130,20 @@
           }).catch(err => {
             console.log('erro: ', err)
           })
+        }
+      },
+      mounted () {
+        if (sessionStorage.getItem('ID')) {
+            let tk = 'Bearer ' + sessionStorage.getItem('access_tk');
+            const headers = {
+              'Authorization': tk,
+            }
+            menu.get(sessionStorage.getItem('ID'), headers).then(res => {
+              this.items = res.data;
+              console.log(res.data)
+            }).catch(failed => {
+              console.log(failed)
+            });
         }
       }
     }

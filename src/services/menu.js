@@ -10,8 +10,12 @@ export default {
         return http.post('menu', params)
     },
 
-    get: (id) => {
-        return http.get(`menu/${id}`)
+    get: (id, headers = {}) => {
+        return http.get(`menu/${id}`, {headers: headers})
+    },
+
+    getToView: (id) => {
+        return http.get(`view/menu/${id}`);
     }
 
 
