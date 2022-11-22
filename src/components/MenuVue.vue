@@ -20,9 +20,10 @@
       />
   
       <ModalInfoItem v-if="showmodal" :itemphonearray="itemphonearray" :chave="chaveArrItem" />
+
       <div class="space-empty" v-else></div>
       
-      <ModalQrCode :show="showQrCode" :title="titleQrCode" />
+      <ModalQrCode :show="showQrCode" :title="titleQrCode" :valueQrCode="urlQrCode" />
 
       <ModalError :show="error" :message="messageError" :title="titleError" />
 
@@ -152,6 +153,7 @@
             if (res.status === 200) {
               this.showQrCode = true;
               this.titleQrCode = "Cardápio feito com sucesso!"
+
               if (res.data.url) {
                 this.urlQrCode += '/menu/'+res.data.url;
               } else {

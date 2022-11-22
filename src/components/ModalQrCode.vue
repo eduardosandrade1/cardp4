@@ -2,13 +2,18 @@
     <div id="myModal" class="modal" v-show="show">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h1>
-              {{ title }}
-            </h1>
-            <vue-qrcode
-                value="{{ valueQrCode }}"
-            />
-            <p class="text-danger">{{ message }}</p>
+            <div class="content">
+                <h1>
+                  {{ title }}
+                </h1>
+                <div class="qrcode">
+                    <vue-qrcode
+                        :value="valueQrCode"
+                        :width="200"
+                    />
+                </div>
+                <p class="text-danger">{{ message }}</p>
+            </div>
         </div>
     
     </div>
@@ -50,6 +55,16 @@ export default {
     border: 1px solid #888;
     border-radius: 15px;
     width: 80%; /* Could be more or less, depending on screen size */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* The Close Button */
