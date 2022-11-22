@@ -44,6 +44,7 @@
                     :name="item.name"
                     :description="item.description"
                     :price="item.price"
+                    :show-action="showAction"
                  />
             </div>
         </div>
@@ -57,7 +58,7 @@ import Item from './Item.vue';
 export default {
     name: "Phone",
     props: [
-        'type', 'src', 'alt', 'value',
+        'type', 'src', 'alt', 'value', 'showAction',
     ],
     data() {
         return {

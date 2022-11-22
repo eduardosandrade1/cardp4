@@ -16,11 +16,16 @@
         @dragover.prevent
         ondragstart="return false;"
         ondrop="return false;"
+        :show-action="showActionItems"
       />
   
       <ModalInfoItem v-if="showmodal" :itemphonearray="itemphonearray" :chave="chaveArrItem" />
       <div class="space-empty" v-else></div>
-  
+      
+      <ModalQrCode :show="showQrCode" :title="titleQrCode" />
+
+      <ModalError :show="error" :message="messageError" :title="titleError" />
+
     </div>
   
   </template>
@@ -30,7 +35,8 @@
     import Phone from './Phone.vue';
     import MenuSize from './MenuSize.vue';
     import ModalInfoItem from './ModalInfoItem.vue';
-    import Modal from './Modal.vue';
+    import ModalQrCode from './ModalQrCode.vue';
+    import ModalError from './ModalError.vue';
 
     import menu from '../services/menu';
   
@@ -42,15 +48,26 @@
           itemphonearray: null,
           MenuItems: this.GenListDefault('', 1),
           chaveArrItem: 0,
+          showQrCode: false,
+          titleQrCode: '',
+          urlQrCode: this.getCurrentUrl(),
+          error: false,
+          messageError: '',
+          titleError: '',
+          showActionItems: true,
         }
       },
       components: {
         Phone,
         MenuSize,
         ModalInfoItem,
-        Modal,
+        ModalQrCode,
+        ModalError,
       },
       methods: {
+        getCurrentUrl(){
+          return window.location.origin;
+        },
         getMenu() {
           return this.MenuItems;
         },
@@ -132,8 +149,23 @@
           let id = 0;
           if (sessionStorage.getItem('ID')) id = sessionStorage.getItem('ID')
           Menu.save(this.items, id).then(res => {
+            if (res.status === 200) {
+              this.showQrCode = true;
+              this.titleQrCode = "Cardápio feito com sucesso!"
+              if (res.data.url) {
+                this.urlQrCode += '/menu/'+res.data.url;
+              } else {
+                this.showQrCode = false;
+                this.error = true;
+                this.titleError = "Ops,";
+                this.messageError = "Ocorreu um erro ao tentar gerar seu QrCode. Por favor, entre em contato com o suporte!"
+              }
+            }
             console.log('succ: ', res)
           }).catch(err => {
+            this.error = true;
+            this.titleError = 'Ops,';
+            this.messageError = "Ocorreu um erro ao tentar esta ação. Por favor, entre em contato com o suporte!"
             console.log('erro: ', err)
           })
         }
@@ -145,7 +177,9 @@
               'Authorization': tk,
             }
             menu.get(sessionStorage.getItem('ID'), headers).then(res => {
-              this.items = res.data;
+              if (res.data.length > 0)
+                this.items = res.data;
+
             }).catch(failed => {
               console.log(failed)
             });
