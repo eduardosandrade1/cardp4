@@ -27,6 +27,9 @@
                     <a class="btn-enter" href="/menu">Entrar sem login</a>
                 </div>
             </div>
+            <div class="teste">
+                sad
+            </div>
         </div>
         <div class="explain-area">
             <div class="content">
@@ -90,8 +93,8 @@
     .container__login {
         display: flex;
         justify-content: space-between;
-        width: 56vw;
-        height: 80vh;
+        width: 90vw;
+        height: 90vh;
         margin: auto;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;

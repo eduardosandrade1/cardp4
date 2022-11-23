@@ -1,7 +1,7 @@
 <template>
 <div id="myModal" class="modal" v-show="show">
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" @click="close()">&times;</span>
         <h1>
           {{ title }}
         </h1>
@@ -14,7 +14,16 @@
 <script>
 
 export default {
-  props: ['title', 'message', 'show'],
+  props: [
+    'title',
+    'message',
+    'show',
+  ],
+  methods: {
+    close () {
+      this.$parent.showQrCode = false;
+    }
+  }
 }
 
 </script>
@@ -41,7 +50,7 @@ export default {
   padding: 20px;
   border: 1px solid #888;
   border-radius: 15px;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 40%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */

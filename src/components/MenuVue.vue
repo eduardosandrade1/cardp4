@@ -19,9 +19,7 @@
         :show-action="showActionItems"
       />
   
-      <ModalInfoItem v-if="showmodal" :itemphonearray="itemphonearray" :chave="chaveArrItem" />
-
-      <div class="space-empty" v-else></div>
+      <ModalInfoItem :itemphonearray="itemphonearray" :chave="chaveArrItem" />
       
       <ModalQrCode :show="showQrCode" :title="titleQrCode" :valueQrCode="urlQrCode" />
 
@@ -45,8 +43,7 @@
       data() {
         return {
           items : [],
-          showmodal: false,
-          itemphonearray: null,
+          itemphonearray: {},
           MenuItems: this.GenListDefault('', 1),
           chaveArrItem: 0,
           showQrCode: false,
@@ -142,7 +139,6 @@
         },
   
         showInfoDiv(typeItem, indexElement) {
-            this.showmodal = true
             this.chaveArrItem = indexElement;
             this.itemphonearray = this.items[indexElement]
         },
@@ -230,10 +226,7 @@
     .btn-lg {
       width: 95%;
     }
-    .space-empty {
-      width: 400px;
-      height: 700px;
-    }
+
     .actions {
       display: flex;
       justify-content: space-evenly;

@@ -2,7 +2,7 @@
 
     <div class="container__">
         <div class="background__items_option">
-            <div class="input_item_div border-tb" v-if="itemphonearray.tag == 'img'">
+            <div class="input_item_div border-tb" v-if="itemphonearray.tag == 'img'" >
                 <img :src="srcValue" class="img-size">
             </div>
 
@@ -30,10 +30,10 @@
                 </div>
 
             </div>
-            <div class="footer">
-                <button class="btn btn-primary btn-lg" @click="closeModal()">
-                  <span>Fechar</span>
-                </button>
+            <div class="d-flex-text-center" v-else>
+              <p>
+                Clique em um item para editá-lo.
+              </p>
             </div>
         </div>
     </div>
@@ -49,9 +49,7 @@
             }
         },
         methods: {
-            closeModal() {
-                this.$parent.showmodal = false;
-            }
+
         },
         computed: {
             valueInput: {
@@ -113,6 +111,9 @@
 
 <style scoped>
 .background__items_option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 400px;
     min-height: 700px;
     padding: 50px;
@@ -127,10 +128,6 @@
 .flex-direction-row{
     display: flex;
     flex-direction: column;
-}
-.footer {
-    width:100%;
-    bottom: 0;
 }
 
 textarea {
@@ -275,6 +272,12 @@ a span:nth-child(4) {
   50%,100% {
     bottom: 100%;
   }
+}
+
+.d-flex-text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>

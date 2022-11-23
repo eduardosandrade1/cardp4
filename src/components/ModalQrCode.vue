@@ -1,7 +1,7 @@
 <template>
     <div id="myModal" class="modal" v-show="show">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" @click="close()">&times;</span>
             <div class="content">
                 <h1>
                   {{ title }}
@@ -13,6 +13,10 @@
                     />
                 </div>
                 <p class="text-danger">{{ message }}</p>
+
+                <input type="email" name="" id="">
+
+                <button class="btn btn-primary">Enviar</button>
             </div>
         </div>
     
@@ -27,6 +31,11 @@ export default {
     props: ['title', 'message', 'show', 'valueQrCode'],
     components: {
         VueQrcode,
+    },
+    methods: {
+        close(){
+            this.$parent.showQrCode = false;
+        }
     }
 }
 

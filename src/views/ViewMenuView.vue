@@ -33,18 +33,19 @@ export default {
     },
 
     mounted () {
+        let tk = '';
         if (sessionStorage.getItem('ID')) {
-            let tk = 'Bearer ' + sessionStorage.getItem('access_tk');
-            const headers = {
-              'Authorization': tk,
-            }
-
-            menu.get(this.$route.params.id, headers).then(res => {
-                this.items = res.data;
-            }).catch(failed => {
-              console.log(failed)
-            });
+            tk = 'Bearer ' + sessionStorage.getItem('access_tk');
         }
+        const headers = {
+            'Authorization': tk,
+        }
+
+        menu.getToView(this.$route.params.id, headers).then(res => {
+            this.items = res.data;
+        }).catch(failed => {
+            console.log(failed)
+        });
     },
     components: {
         Item
