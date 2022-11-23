@@ -1,5 +1,5 @@
 <template>
-
+    <Loading v-show="loading"/>
     <div class="container__login">
         <div class="login-area">
             <div class="container-center ">
@@ -24,11 +24,20 @@
                     <button class="btn-enter" @click="doLogin()">Entrar</button>
                 </div>
                 <div class="without-login">
-                    <a class="btn-enter" href="/menu">Entrar sem login</a>
+                    <a class="btn-enter-none-login" @click="goToLoginPageWithoutAuthenticated()">Entrar sem login</a>
                 </div>
-            </div>
-            <div class="teste">
-                sad
+                <div class="register">
+                    <div class="link-register">
+                        <a>
+                            Quero me cadastrar
+                        </a>
+                    </div>
+                    <div class="link-forgot-pass">
+                        <a>
+                            Esqueci a senha
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="explain-area">
@@ -50,18 +59,25 @@
 
 <script>
 
+    import { useVuelidate } from '@vuelidate/core'
+    import { required, email } from '@vuelidate/validators'
+
     import Auth from '../services/auth';
+    import Loading from '../components/Loading.vue'
 
     export default {
         data() {
             return {
-                error: ''
+                error: '',
+                loading: false,
+                v$: useVuelidate(),
             }
         },
         methods: {
             doLogin() {
                 let email = this.email;
                 let psswd = this.password;
+                this.loading = true;
                 Auth.doAuth({
 
                     email: email,
@@ -74,14 +90,35 @@
                             sessionStorage.setItem('access_tk', data.access_token)
                             sessionStorage.setItem('ID', data.ID)
                         }
+                        this.loading = false;
 
                         window.location.href = '/menu'
                     }
                 }).catch(er => {
-                    this.error = "Email ou senha inválidos"
+                    this.loading = false
+                    this.error = "Email e/ou senha inválido"
                     this.email = ''
                     this.password = ''
+                    setTimeout(() => {
+                        this.error = '';
+                    }, 4000);
                 })
+            },
+            goToLoginPageWithoutAuthenticated() {
+                sessionStorage.removeItem('access_tk')
+                sessionStorage.removeItem('ID')
+                window.location.href = '/menu';
+            }
+        },
+        components: {
+            Loading,
+        },
+        validations () {
+            return {
+                email: {
+                    required,
+                    email
+                }
             }
         }
 
@@ -201,6 +238,24 @@
         border-radius: 11px;
         border: none;
         color: rgba(0, 0, 0, 0.79);
+        cursor: pointer;
+    }
+
+    .register {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 40px;
+    }
+    .register a {
+        font-size: 10px;
+
+    }
+
+    .btn-enter-none-login {
+        font-size: 10pt;
+        padding: 0;
         cursor: pointer;
     }
 

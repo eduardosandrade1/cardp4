@@ -1,4 +1,7 @@
 <template>
+
+  <Loading v-show="loading" />
+
     <div id="container__items">
       
       <div class="actions">
@@ -36,6 +39,7 @@
     import ModalInfoItem from './ModalInfoItem.vue';
     import ModalQrCode from './ModalQrCode.vue';
     import ModalError from './ModalError.vue';
+    import Loading from './Loading.vue';
 
     import menu from '../services/menu';
   
@@ -53,6 +57,7 @@
           messageError: '',
           titleError: '',
           showActionItems: true,
+          loading: false,
         }
       },
       components: {
@@ -61,6 +66,7 @@
         ModalInfoItem,
         ModalQrCode,
         ModalError,
+        Loading,
       },
       methods: {
         getCurrentUrl(){
@@ -145,27 +151,36 @@
         save() {
           let id = 0;
           if (sessionStorage.getItem('ID')) id = sessionStorage.getItem('ID')
-          Menu.save(this.items, id).then(res => {
-            if (res.status === 200) {
-              this.showQrCode = true;
-              this.titleQrCode = "Cardápio feito com sucesso!"
+          this.loading = true;
+          if (this.items.length > 0) {
+            Menu.save(this.items, id).then(res => {
+              this.loading = false;
+              if (res.status === 200) {
+                this.showQrCode = true;
+                this.titleQrCode = "Cardápio feito com sucesso!"
 
-              if (res.data.url) {
-                this.urlQrCode += '/menu/'+res.data.url;
-              } else {
-                this.showQrCode = false;
-                this.error = true;
-                this.titleError = "Ops,";
-                this.messageError = "Ocorreu um erro ao tentar gerar seu QrCode. Por favor, entre em contato com o suporte!"
+                if (res.data.url) {
+                  this.urlQrCode += '/menu/'+res.data.url;
+                } else {
+                  this.showQrCode = false;
+                  this.error = true;
+                  this.titleError = "Ops,";
+                  this.messageError = "Ocorreu um erro ao tentar gerar seu QrCode. Por favor, entre em contato com o suporte!"
+                }
               }
-            }
-            console.log('succ: ', res)
-          }).catch(err => {
+            }).catch(err => {
+              this.loading = false;
+              this.error = true;
+              this.titleError = 'Ops,';
+              this.messageError = "Ocorreu um erro ao tentar esta ação. Por favor, entre em contato com o suporte!"
+            })            
+          } else {
+            this.loading = false;
             this.error = true;
             this.titleError = 'Ops,';
-            this.messageError = "Ocorreu um erro ao tentar esta ação. Por favor, entre em contato com o suporte!"
-            console.log('erro: ', err)
-          })
+            this.messageError = "Necessário ter ao menos um item em tela"
+          }
+
         }
       },
       mounted () {
