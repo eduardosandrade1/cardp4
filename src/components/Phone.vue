@@ -36,6 +36,9 @@
             >
                 <Item 
                     :chave="k"
+                    :class="item.classe"
+                    :classeTitilo="item.classe_titilo"
+                    :classeDescricao="item.classe_descricao"
                     :type="item.tag"
                     :src="item.path"
                     :alt="item.alt"

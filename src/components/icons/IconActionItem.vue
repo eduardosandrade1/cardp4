@@ -49,9 +49,6 @@ export default {
         background-color: transparent;
         margin-left: 4px;
     }
-    .icon{
-        max-width: 16px;
-    }
 
     .space_opt_items div {
         cursor: pointer;

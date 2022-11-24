@@ -7,10 +7,47 @@
             </div>
 
             <div class="input_item_div border-tb" v-else-if="itemphonearray.tag == 'input'">
+              <div class="d-flex flex-direction-column">
                 <div class="user-box">
                     <input type="text" name="" maxlength="20" placeholder="Escreva seu título" v-model="valueInput">
                     <label for="">Título</label>
                 </div>
+                <label for="">Alinhamento</label>
+                <div class="options-style">
+                  <div class="text-start" @click="alignClass(`text-start`)">
+                    <img src="../assets/icons/align-left.png" alt="" class="icon">
+                  </div>
+                  <div class="text-center" @click="alignClass(`text-center`)">
+                    <img src="../assets/icons/align-center.png" alt="" class="icon">
+                  </div>
+                  <div class="text-end" @click="alignClass(`text-end`)">
+                    <img src="../assets/icons/align-right.png" alt="" class="icon">
+                  </div>
+                </div>
+                <label for="">Cor da fonte</label>
+                <div class="options-style">
+                  <div class="primary" @click="addColor('color-primary')">
+                    <div class="div-color-primary">
+
+                    </div>
+                  </div>
+                  <div class="secondary" @click="addColor('color-secondary')">
+                    <div class="div-color-secondary">
+
+                    </div>
+                  </div>
+                  <div class="tertiary" @click="addColor('color-tertiary')">
+                    <div class="div-color-tertiary">
+
+                    </div>
+                  </div>
+                  <div class="quartiary" @click="addColor('color-quartiary')">
+                    <div class="div-color-quartiary">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="input_item_div flex-direction-row border-tb" v-else-if="itemphonearray.tag == 'item'">
@@ -49,7 +86,30 @@
             }
         },
         methods: {
+          alignClass (align) {
+            let classe = this.$parent.items[this.chave].classe;
 
+            classe.forEach((element, index) => {
+              let pos = element.indexOf('text-');
+              if (pos > -1){
+                classe.splice(index, 1);
+              }
+            });
+
+            (classe).push(align);
+          },
+          addColor (nameClass) {
+            let classe = this.$parent.items[this.chave].classe;
+
+            classe.forEach((element, index) => {
+              let pos = element.indexOf('color-');
+              if (pos > -1){
+                classe.splice(index, 1);
+              }
+            });
+
+            (classe).push(nameClass);
+          }
         },
         computed: {
             valueInput: {
@@ -278,6 +338,44 @@ a span:nth-child(4) {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flex-direction-column{
+  flex-direction: column;
+}
+
+.options-style{
+  display: flex;
+  justify-content: space-around;
+}
+.options-style div{
+  margin: 10px;
+  cursor: pointer;
+}
+
+.div-color-primary {
+  width: var(--width-div-color);
+  height: var(--height-div-color);
+  background-color: var(--color-div-font-item-primary);
+  border-radius: var(--radius-div-color);
+}
+.div-color-secondary {
+  width: var(--width-div-color);
+  height: var(--height-div-color);
+  background-color: var(--color-div-font-item-secondary);
+  border-radius: var(--radius-div-color);
+}
+.div-color-tertiary {
+  width: var(--width-div-color);
+  height: var(--height-div-color);
+  background-color: var(--color-div-font-item-tertiary);
+  border-radius: var(--radius-div-color);
+}
+.div-color-quartiary {
+  width: var(--width-div-color);
+  height: var(--height-div-color);
+  background-color: var(--color-div-font-item-quartiary);
+  border-radius: var(--radius-div-color);
 }
 
 </style>

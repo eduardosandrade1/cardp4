@@ -46,3 +46,32 @@ a {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.582); /* Black w/ opacity */
 }
+
+.text-center {
+  text-align: center;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.text-start {
+  text-align: start;
+}
+
+.icon{
+  max-width: 16px;
+}
+
+.color-primary {
+  color: var(--color-div-font-item-primary);
+}
+.color-secondary {
+  color: var(--color-div-font-item-secondary);
+}
+.color-tertiary {
+  color: var(--color-div-font-item-tertiary);
+}
+.color-quartiary {
+  color: var(--color-div-font-item-quartiary);
+}

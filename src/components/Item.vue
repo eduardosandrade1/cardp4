@@ -1,6 +1,6 @@
 <template>
     <div class="input_item_div border-tb bg-transparent" v-if="type == 'input'">
-        <input :value="value" readonly placeholder="Título"  @click="showInfoDiv(type, chave)" />
+        <input :value="value" readonly placeholder="Título" :class="class"  @click="showInfoDiv(type, chave)" />
         <IconActionItem :place_item="place_item" :chave="chave" v-show="showAction" />
 
     </div>
@@ -18,15 +18,15 @@
             <img :alt="alt" :src="src" class="img_item_list">
             <div class="infos">
                 <div class="top-titles">
-                    <span class="title">
+                    <span :class="classeTitilo" >
                         {{ name }}
                     </span>
                     <div class="price">
-                        R$ {{ price.toLocaleString() }}
+                        R$ {{ price.toFixed(2) }}
                     </div>
                 </div>
                 
-                <div class="description">
+                <div :class="classeDescricao">
                     {{ description }}
                 </div>
             </div>
@@ -41,7 +41,7 @@
 
     export default {
         name: "Item",
-        props: ['showAction', 'type', 'src', 'alt', 'value', 'place_item', 'chave', 'name', 'description', 'price'],
+        props: ['showAction', 'type', 'src', 'alt', 'value', 'place_item', 'chave', 'name', 'description', 'price', 'class', 'classeTitilo', 'classeDescricao'],
         data() {
             return {
 
@@ -71,6 +71,13 @@
         },
         components: {
             IconActionItem,
+        },
+        computed: {
+            classe: {
+                get() {
+                    return this.class.join(" ")
+                }
+            }
         }
     }
 </script>

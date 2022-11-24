@@ -34,6 +34,15 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+  --width-div-color: 20px;
+  --height-div-color: 20px;
+  --radius-div-color: 20px;
+
+  --color-div-font-item-primary:#ff0000;
+  --color-div-font-item-secondary:#03f403;
+  --color-div-font-item-tertiary:#1303f4;
+  --color-div-font-item-quartiary:#ff00b3;
 }
 
 @font-face { font-family: indie-flower; 

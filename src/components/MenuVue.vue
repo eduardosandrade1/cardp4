@@ -95,7 +95,7 @@
           // input
           for (let i=qtd; i < (qtd*2); i++) {
             list.push(
-              { id: i, title: 'Item '+i, path: '', tag: 'input', list: 1, value: ''},
+              { id: i, title: 'Item '+i, path: '', tag: 'input', list: 1, value: '', classe: []},
             );
           }
           // item
@@ -111,7 +111,9 @@
                 name: 'Título',
                 time: (i/100),
                 description: 'Descrição do item',
-                price: 0.99
+                price: 0.99,
+                classe_titilo: 'title',
+                classe_descricao: 'description',
               },
             );
           }

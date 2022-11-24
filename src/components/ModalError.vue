@@ -21,7 +21,7 @@ export default {
   ],
   methods: {
     close () {
-      this.$parent.showQrCode = false;
+      this.$parent.show = false;
     }
   }
 }
