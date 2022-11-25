@@ -43,6 +43,8 @@
   --color-div-font-item-secondary:#03f403;
   --color-div-font-item-tertiary:#1303f4;
   --color-div-font-item-quartiary:#ff00b3;
+
+  --letter-spacing-global:2px;
 }
 
 @font-face { font-family: indie-flower; 
@@ -84,8 +86,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body input, textarea, span, p, label, button {
+body input, textarea, span, p, label, button, div {
   font-family: indie-flower;
+  font-weight: bold;
 }
 
 .d-flex {

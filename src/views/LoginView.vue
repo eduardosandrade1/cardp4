@@ -9,20 +9,22 @@
                 <div class="text-logo">
                     Login
                 </div>
-                <div class="input-group">
-                    <input type="email" placeholder="Email" v-model="email">
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Senha" v-model="password">
-                </div>
+                <form v-on:submit="doLogin">
+                    <div class="input-group">
+                        <input type="email" placeholder="Email" v-model="email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="Senha" min="8" v-model="password" required>
+                    </div>
 
-                <span class="text-danger" v-if="error">
-                    {{ error }}
-                </span>
+                    <span class="text-danger" v-if="error">
+                        {{ error }}
+                    </span>
 
-                <div class="enter">
-                    <button class="btn-enter" @click="doLogin()">Entrar</button>
-                </div>
+                    <div class="enter">
+                        <button class="btn-enter">Entrar</button>
+                    </div>
+                </form>
                 <div class="without-login">
                     <a class="btn-enter-none-login" @click="goToLoginPageWithoutAuthenticated()">Entrar sem login</a>
                 </div>
@@ -70,11 +72,11 @@
             return {
                 error: '',
                 loading: false,
-                v$: useVuelidate(),
             }
         },
         methods: {
-            doLogin() {
+            doLogin(e) {
+                e.preventDefault();
                 let email = this.email;
                 let psswd = this.password;
                 this.loading = true;
@@ -112,16 +114,7 @@
         },
         components: {
             Loading,
-        },
-        validations () {
-            return {
-                email: {
-                    required,
-                    email
-                }
-            }
         }
-
     }
 
 </script>
@@ -247,10 +240,6 @@
         justify-content: space-evenly;
         align-items: center;
         margin-top: 40px;
-    }
-    .register a {
-        font-size: 10px;
-
     }
 
     .btn-enter-none-login {

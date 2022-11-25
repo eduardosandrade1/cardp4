@@ -251,7 +251,7 @@ a {
   overflow: hidden;
   transition: .5s;
   margin-top: 40px;
-  letter-spacing: 4px
+  letter-spacing: var(letter-spacing-global);
 }
 
 a span {
