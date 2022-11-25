@@ -22,6 +22,7 @@ export default {
   methods: {
     close () {
       this.$parent.show = false;
+      this.$parent.error = false;
     }
   }
 }

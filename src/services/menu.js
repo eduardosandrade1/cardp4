@@ -2,12 +2,12 @@ import { http } from "./config";
 
 export default {
 
-    save: (items, id) => {
+    save: (items, id, headers) => {
         let params = {
             items: items,
             ID: id
         }
-        return http.post('menu', params)
+        return http.post('menu', params, {headers: headers})
     },
 
     get: (id, headers = {}) => {

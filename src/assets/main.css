@@ -5,7 +5,7 @@
   padding: 2rem;
   font-weight: normal;
   height: 100vh;
-  background: url('./images/bg4.jpg');
+  /* background: url('./images/bg4.jpg'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: darken;
@@ -93,4 +93,8 @@ a {
 }
 .color-quartiary {
   color: var(--color-div-font-item-quartiary);
+}
+
+input[type="file"] {
+  display: none;
 }

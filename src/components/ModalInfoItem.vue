@@ -3,8 +3,8 @@
     <div class="container__">
         <div class="background__items_option">
             <div class="input_item_div border-tb" v-if="itemphonearray.tag == 'img'" >
-                <img :src="srcValue" class="img-size">
-                <input type="file" name="" id="">
+                <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner">
+                <img :src="srcValue" class="img-size" @click="clickBanner()">
             </div>
 
             <div class="input_item_div border-tb" v-else-if="itemphonearray.tag == 'input'">
@@ -53,8 +53,8 @@
 
             <div class="input_item_div flex-direction-row border-tb" v-else-if="itemphonearray.tag == 'item'">
 
-                <img :src="srcValue" class="img-size">
-
+                <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner">
+                <img :src="srcValue" class="img-size" @click="clickBanner()">
                 <div class="texts">
                     <div class="user-box">
                         <input type="text" name="" maxlength="20" placeholder="Título do item" v-model="itemName">
@@ -110,6 +110,19 @@
             });
 
             (classe).push(nameClass);
+          },
+          uploadFile() {
+            let refImage = this.$refs.input_file_banner.files[0];
+            let linkPreview = window.URL.createObjectURL(this.$refs.input_file_banner.files[0]);
+
+            let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
+            it.refImage = refImage;
+            it.linkPreview = linkPreview;
+            this.$parent.items.splice(this.chave, 1);
+            this.$parent.items.splice(this.chave, 0, it)
+          },
+          clickBanner() {
+            this.$refs.input_file_banner.click();
           }
         },
         computed: {
@@ -126,10 +139,7 @@
             },
             srcValue: {
                 get() {
-                    return this.$parent.items[this.chave].path;
-                },
-                set() {
-
+                    return this.$parent.items[this.chave].linkPreview == '' ? this.$parent.items[this.chave].path : this.$parent.items[this.chave].linkPreview;
                 }
             },
             itemName: {

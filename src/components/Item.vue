@@ -41,7 +41,21 @@
 
     export default {
         name: "Item",
-        props: ['showAction', 'type', 'src', 'alt', 'value', 'place_item', 'chave', 'name', 'description', 'price', 'class', 'classeTitilo', 'classeDescricao'],
+        props: [
+            'showAction', 
+            'type', 
+            'src', 
+            'alt', 
+            'value', 
+            'place_item', 
+            'chave', 
+            'name', 
+            'description', 
+            'price', 
+            'class', 
+            'classeTitilo', 
+            'classeDescricao',
+        ],
         data() {
             return {
 
@@ -106,9 +120,7 @@
         width: 100%;
         border-radius: 25px;
     }
-    input[type="file"] {
-        display: none;
-    }
+
     .div_item_with_pic__{
         display: flex;
         border-top: 6px;

@@ -89,7 +89,7 @@
           // img
           for (let i=0; i < qtd; i++) {
               list.push(
-                { id: i, title: 'Item '+i, path: 'src/assets/images/banner-default/banner-3.jpg', tag: 'img', list: 1, value: ''},
+                { id: i, title: 'Item '+i, path: 'src/assets/images/banner-default/banner-3.jpg', tag: 'img', list: 1, value: '', refImage: {}, linkPreview: '',},
               )
           }
           // input
@@ -105,6 +105,8 @@
                 id: i,
                 title: 'Item '+i,
                 path: 'src/assets/images/sem-img.jpg',
+                refImage: {},
+                linkPreview: '',
                 tag: 'item',
                 list: 1,
                 value: '',
@@ -153,9 +155,10 @@
         save() {
           let id = 0;
           if (sessionStorage.getItem('ID')) id = sessionStorage.getItem('ID')
+          const headers = { 'Content-Type': 'multipart/form-data' };
           this.loading = true;
           if (this.items.length > 0) {
-            Menu.save(this.items, id).then(res => {
+            Menu.save(this.items, id, headers).then(res => {
               this.loading = false;
               if (res.status === 200) {
                 this.showQrCode = true;
