@@ -12,6 +12,14 @@
   transition: 0.4s;
 }
 
+.color-black {
+  color: #000;
+}
+
+.color-white {
+  color: #fff;
+}
+
 .text-danger {
   text-decoration: none;
   color: rgb(189, 0, 0);

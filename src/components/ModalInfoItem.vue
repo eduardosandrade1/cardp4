@@ -4,6 +4,7 @@
         <div class="background__items_option">
             <div class="input_item_div border-tb" v-if="itemphonearray.tag == 'img'" >
                 <img :src="srcValue" class="img-size">
+                <input type="file" name="" id="">
             </div>
 
             <div class="input_item_div border-tb" v-else-if="itemphonearray.tag == 'input'">

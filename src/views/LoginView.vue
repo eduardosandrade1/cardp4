@@ -1,7 +1,10 @@
 <template>
     <Loading v-show="loading"/>
-    <div class="container__login">
-        <div class="login-area">
+    <input type="checkbox" class="visib-hidden" id="c1">
+    <input type="checkbox" class="visib-hidden" id="c2">
+
+    <div class="container__login flip-book">
+        <div class="login-area flip" id="p2">
             <div class="container-center ">
                 <div class="logo">
                     <img src="../assets/logo.png" alt="" srcset="" id="img-logo">
@@ -41,8 +44,9 @@
                     </div>
                 </div>
             </div>
+            <label for="c1" class="back-btn color-black">Voltar</label>
         </div>
-        <div class="explain-area">
+        <div class="explain-area flip" id="p1">
             <div class="content">
                 <div class="text">
                     <p>
@@ -53,7 +57,7 @@
                     </p>
                 </div>
             </div>
-
+            <label for="c1" class="next-btn color-white">Avançar</label>
         </div>
     </div>
 
@@ -123,7 +127,7 @@
     .container__login {
         display: flex;
         justify-content: space-between;
-        width: 90vw;
+        width: 40vw;
         height: 90vh;
         margin: auto;
         border-radius: 10px;
@@ -147,12 +151,13 @@
     .container__login .login-area {
         border-radius: 15px 0 0 15px;
         margin: auto;
+        width: 100%;
     }
 
     .container__login .login-area .container-center {
         width: 400px;
-        height: 300px;
         margin: auto;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -203,7 +208,7 @@
         justify-content: center;
         align-items: center;
         padding: 15px;
-        width: 50%;
+        width: 100%;
         height: 100%;
         background: url('../assets/images/explain-bg.jpg');
         background-color: rgba(0, 0, 0, 0.507);
@@ -248,4 +253,84 @@
         cursor: pointer;
     }
 
+    .visib-hidden{
+        visibility: hidden;
+    }
+
+    .book {
+    display: flex;
+    }
+    #cover {
+    width: 250px;
+    height: 400px;
+    }
+    .flip-book {
+    position: relative;
+    perspective: 1500px;
+    }
+    .flip {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: 1s;
+    }
+    .front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 0 13px;
+    }
+    .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    background-color: #000;
+    }
+    .next-btn {
+    position: absolute;
+    bottom: 13px;
+    right: 13px;
+    cursor: pointer;
+    }
+    .back-btn {
+    position: absolute;
+    bottom: 13px;
+    right: 13px;
+    cursor: pointer;
+    }
+    #p1 {
+    z-index: 3;
+    }
+    #p2 {
+    z-index: 2;
+    }
+    #p3 {
+    z-index: 1;
+    }
+    #c1:checked ~ .flip-book #p1 {
+    transform: rotateY(-180deg);
+    z-index: 1;
+    }
+    #c2:checked ~ .flip-book #p2 {
+    transform: rotateY(-180deg);
+    z-index: 2;
+    }
+    #c3:checked ~ .flip-book #p3 {
+    transform: rotateY(-180deg);
+    z-index: 3;
+    }
 </style>
