@@ -1,11 +1,15 @@
 <template>
 <div id="myModal" class="modal" v-show="show">
     <div class="modal-content">
+      <div class="header">
         <span class="close" @click="close()">&times;</span>
+      </div>
+      <div class="body">
         <h1>
           {{ title }}
         </h1>
         <p class="text-danger">{{ message }}</p>
+      </div>
     </div>
 
 </div>
@@ -52,6 +56,7 @@ export default {
   border: 1px solid #888;
   border-radius: 15px;
   width: 40%; /* Could be more or less, depending on screen size */
+  text-align: center;
 }
 
 /* The Close Button */

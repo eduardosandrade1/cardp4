@@ -135,6 +135,7 @@
         /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
     }
     .img_item_list {
+        min-width: 76px;
         max-width: 100%;
         max-height: 100%;
         height: 100%;
