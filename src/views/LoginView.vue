@@ -98,6 +98,9 @@
     bottom: 13px;
     right: 13px;
     cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
     }
     .back-btn {
     position: absolute;

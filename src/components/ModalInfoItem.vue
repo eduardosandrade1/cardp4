@@ -78,7 +78,7 @@
 
 </template>
 <script>
-
+  import menu from '../services/menu';
     export default {
         props: ['itemphonearray', 'chave'],
         data() {
@@ -114,14 +114,23 @@
           uploadFile() {
             let refImage = this.$refs.input_file_banner.files[0];
             let linkPreview = window.URL.createObjectURL(this.$refs.input_file_banner.files[0]);
+            let formData = new FormData();
 
+            formData.append('file', refImage);
+            
+            // menu.save(formData, 0, {}).then(res => {
+            //   console.log(res)
+            // }).catch(err => {
+            //   console.log(err)
+            // })
             let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-            it.refImage = refImage;
+            it.refImage = formData;
             it.linkPreview = linkPreview;
             this.$parent.items.splice(this.chave, 1);
             this.$parent.items.splice(this.chave, 0, it)
           },
           clickBanner() {
+            this.$refs.input_file_banner = '';
             this.$refs.input_file_banner.click();
           }
         },

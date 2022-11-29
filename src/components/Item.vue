@@ -22,7 +22,7 @@
                         {{ name }}
                     </span>
                     <div class="price">
-                        R$ {{ price.toFixed(2) }}
+                        R$ {{ price }}
                     </div>
                 </div>
                 

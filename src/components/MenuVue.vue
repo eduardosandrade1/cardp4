@@ -154,8 +154,9 @@
         },
         save() {
           let id = 0;
+          console.log(this.items)
           if (sessionStorage.getItem('ID')) id = sessionStorage.getItem('ID')
-          const headers = { 'Content-Type': 'multipart/form-data' };
+          const headers = { 'Content-Type': 'multipart/form-data, application/json' };
           this.loading = true;
           if (this.items.length > 0) {
             Menu.save(this.items, id, headers).then(res => {
