@@ -118,14 +118,16 @@
 
             formData.append('file', refImage);
             
-            // menu.save(formData, 0, {}).then(res => {
+            // menu.save(this.$refs.input_file_banner.files[0], 0, {}).then(res => {
             //   console.log(res)
             // }).catch(err => {
             //   console.log(err)
             // })
             let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-            it.refImage = formData;
+
+            it.refImage = this.$refs.input_file_banner.files[0];
             it.linkPreview = linkPreview;
+
             this.$parent.items.splice(this.chave, 1);
             this.$parent.items.splice(this.chave, 0, it)
           },

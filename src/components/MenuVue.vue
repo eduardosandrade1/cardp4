@@ -89,7 +89,7 @@
           // img
           for (let i=0; i < qtd; i++) {
               list.push(
-                { id: i, title: 'Item '+i, path: 'src/assets/images/banner-default/banner-3.jpg', tag: 'img', list: 1, value: '', refImage: {}, linkPreview: '',},
+                { id: i, title: 'Item '+i, path: 'src/assets/images/banner-default/banner-prato.jpg', tag: 'img', list: 1, value: '', refImage: {}, linkPreview: '',},
               )
           }
           // input
@@ -154,11 +154,13 @@
         },
         save() {
           let id = 0;
-          console.log(this.items)
+
           if (sessionStorage.getItem('ID')) id = sessionStorage.getItem('ID')
           const headers = { 'Content-Type': 'multipart/form-data, application/json' };
           this.loading = true;
+
           if (this.items.length > 0) {
+
             Menu.save(this.items, id, headers).then(res => {
               this.loading = false;
               if (res.status === 200) {
@@ -180,6 +182,7 @@
               this.titleError = 'Ops,';
               this.messageError = "Ocorreu um erro ao tentar esta ação. Por favor, entre em contato com o suporte!"
             })            
+
           } else {
             this.loading = false;
             this.error = true;
