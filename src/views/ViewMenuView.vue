@@ -4,7 +4,7 @@
             <Item 
                 :chave="k"
                 :type="item.tag"
-                :src="'../'+item.path"
+                :src="item.path"
                 :alt="item.alt"
                 :value="item.value"
                 :place_item="'screen'"
@@ -54,3 +54,11 @@ export default {
 }
 
 </script>
+
+<style>
+
+.itens {
+    margin-top: 18px;
+}
+
+</style>

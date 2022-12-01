@@ -117,12 +117,7 @@
             let formData = new FormData();
 
             formData.append('file', refImage);
-            
-            // menu.save(this.$refs.input_file_banner.files[0], 0, {}).then(res => {
-            //   console.log(res)
-            // }).catch(err => {
-            //   console.log(err)
-            // })
+
             let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
 
             it.refImage = this.$refs.input_file_banner.files[0];
@@ -205,6 +200,7 @@
 .img-size{
     width: 100%;
     border-radius: 25px;
+    max-height: 300px;
 }
 
 .flex-direction-row{

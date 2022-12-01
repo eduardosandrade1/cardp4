@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         close(){
-            this.$parent.showQrCode = false;
+          window.location.href = '/';
         }
     }
 }
@@ -85,6 +85,7 @@ export default {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    text-align: end;
 }
 
 .close:hover,
