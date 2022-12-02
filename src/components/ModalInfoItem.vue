@@ -90,14 +90,19 @@
           alignClass (align) {
             let classe = this.$parent.items[this.chave].classe;
 
-            classe.forEach((element, index) => {
-              let pos = element.indexOf('text-');
-              if (pos > -1){
-                classe.splice(index, 1);
-              }
-            });
+            if (classe) {
+              classe.forEach((element, index) => {
+                let pos = element.indexOf('text-');
+                if (pos > -1){
+                  classe.splice(index, 1);
+                }
+              });
+            } else {
+              this.$parent.items[this.chave].classe = []
+            }
+            
+            (this.$parent.items[this.chave].classe).push(align);
 
-            (classe).push(align);
           },
           addColor (nameClass) {
             let classe = this.$parent.items[this.chave].classe;
@@ -112,14 +117,11 @@
             (classe).push(nameClass);
           },
           uploadFile() {
-            let refImage = this.$refs.input_file_banner.files[0];
             let linkPreview = window.URL.createObjectURL(this.$refs.input_file_banner.files[0]);
-            let formData = new FormData();
-
-            formData.append('file', refImage);
 
             let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-
+            it.linkPreview = ''
+            it.refImage = ''
             it.refImage = this.$refs.input_file_banner.files[0];
             it.linkPreview = linkPreview;
 
@@ -145,7 +147,10 @@
             },
             srcValue: {
                 get() {
-                    return this.$parent.items[this.chave].linkPreview == '' ? this.$parent.items[this.chave].path : this.$parent.items[this.chave].linkPreview;
+                  if (typeof this.$parent.items[this.chave].linkPreview == 'undefined' || this.$parent.items[this.chave].linkPreview == '') {
+                    return this.$parent.items[this.chave].path
+                  }
+                  return this.$parent.items[this.chave].linkPreview;
                 }
             },
             itemName: {

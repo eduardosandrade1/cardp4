@@ -4,6 +4,7 @@
             <Item 
                 :chave="k"
                 :type="item.tag"
+                :class="item.classe"
                 :src="item.path"
                 :alt="item.alt"
                 :value="item.value"

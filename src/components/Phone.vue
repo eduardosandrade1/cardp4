@@ -40,7 +40,7 @@
                     :classeTitilo="item.classe_titilo"
                     :classeDescricao="item.classe_descricao"
                     :type="item.tag"
-                    :src="item.linkPreview == '' ? item.path : item.linkPreview"
+                    :src="typeof item.linkPreview == 'undefined' || item.linkPreview == '' ? item.path : item.linkPreview"
                     :alt="item.alt"
                     :value="item.value"
                     :place_item="'screen'"
