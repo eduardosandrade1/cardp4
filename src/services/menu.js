@@ -2,12 +2,17 @@ import { http } from "./config";
 
 export default {
 
-    save: (items, id, headers) => {
+    save: (items, id, headers = {}) => {
         let params = {
             items: items,
             ID: id
         }
-        return http.post('menu', params, {headers: headers})
+
+        return http.post('menu', params, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     },
 
     get: (id, headers = {}) => {

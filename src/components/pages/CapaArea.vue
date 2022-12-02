@@ -23,7 +23,7 @@
     padding: 15px;
     width: 100%;
     height: 100%;
-    background: url('../../assets/images/explain-bg.jpg');
+    background: url('../../assets/images/explain-bg-1.jpg');
     /* background-color: rgba(0, 0, 0, 0.507); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -50,6 +50,12 @@
     border: none;
     color: rgba(0, 0, 0, 0.79);
     cursor: pointer;
+}
+
+.next-btn {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 </style>

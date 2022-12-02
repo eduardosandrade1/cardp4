@@ -44,6 +44,10 @@
   --color-div-font-item-tertiary:#1303f4;
   --color-div-font-item-quartiary:#ff00b3;
 
+  --global-hide-x: -500px;
+  --global-hide-left: -500px;
+  --global-hide-right: -500px;
+
   --letter-spacing-global:2px;
 }
 

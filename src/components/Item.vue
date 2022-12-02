@@ -22,7 +22,7 @@
                         {{ name }}
                     </span>
                     <div class="price">
-                        R$ {{ price.toFixed(2) }}
+                        R$ {{ price }}
                     </div>
                 </div>
                 
@@ -123,8 +123,8 @@
 
     .div_item_with_pic__{
         display: flex;
+        width: 100%;
         border-top: 6px;
-        /* background-color: #ececec; */
         background-color: #F8F8F8;
         max-height: 76px;
         border-radius: 15px;

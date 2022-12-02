@@ -78,7 +78,7 @@
 
 </template>
 <script>
-
+  import menu from '../services/menu';
     export default {
         props: ['itemphonearray', 'chave'],
         data() {
@@ -90,14 +90,19 @@
           alignClass (align) {
             let classe = this.$parent.items[this.chave].classe;
 
-            classe.forEach((element, index) => {
-              let pos = element.indexOf('text-');
-              if (pos > -1){
-                classe.splice(index, 1);
-              }
-            });
+            if (classe) {
+              classe.forEach((element, index) => {
+                let pos = element.indexOf('text-');
+                if (pos > -1){
+                  classe.splice(index, 1);
+                }
+              });
+            } else {
+              this.$parent.items[this.chave].classe = []
+            }
+            
+            (this.$parent.items[this.chave].classe).push(align);
 
-            (classe).push(align);
           },
           addColor (nameClass) {
             let classe = this.$parent.items[this.chave].classe;
@@ -112,16 +117,19 @@
             (classe).push(nameClass);
           },
           uploadFile() {
-            let refImage = this.$refs.input_file_banner.files[0];
             let linkPreview = window.URL.createObjectURL(this.$refs.input_file_banner.files[0]);
 
             let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-            it.refImage = refImage;
+            it.linkPreview = ''
+            it.refImage = ''
+            it.refImage = this.$refs.input_file_banner.files[0];
             it.linkPreview = linkPreview;
+
             this.$parent.items.splice(this.chave, 1);
             this.$parent.items.splice(this.chave, 0, it)
           },
           clickBanner() {
+            this.$refs.input_file_banner = '';
             this.$refs.input_file_banner.click();
           }
         },
@@ -139,7 +147,10 @@
             },
             srcValue: {
                 get() {
-                    return this.$parent.items[this.chave].linkPreview == '' ? this.$parent.items[this.chave].path : this.$parent.items[this.chave].linkPreview;
+                  if (typeof this.$parent.items[this.chave].linkPreview == 'undefined' || this.$parent.items[this.chave].linkPreview == '') {
+                    return this.$parent.items[this.chave].path
+                  }
+                  return this.$parent.items[this.chave].linkPreview;
                 }
             },
             itemName: {
@@ -194,6 +205,7 @@
 .img-size{
     width: 100%;
     border-radius: 25px;
+    max-height: 300px;
 }
 
 .flex-direction-row{

@@ -43,7 +43,7 @@
         height: 85vh;
         margin: auto;
         border-radius: 10px;
-        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
         background-color: #F8F8F8;
     }
 
@@ -103,6 +103,9 @@
     bottom: 13px;
     right: 13px;
     cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
     }
     .back-btn {
     position: absolute;
