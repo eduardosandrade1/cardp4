@@ -3,7 +3,7 @@
     <div class="container__">
         <div class="background__items_option">
             <div class="input_item_div border-tb" v-if="itemphonearray.tag == 'img'" >
-                <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner">
+                <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner" accept=".jpg,.png,.jpeg">
                 <img :src="srcValue" class="img-size" @click="clickBanner()">
             </div>
 
@@ -53,7 +53,7 @@
 
             <div class="input_item_div flex-direction-row border-tb" v-else-if="itemphonearray.tag == 'item'">
 
-                <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner">
+                <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner" accept=".jpg,.png,.jpeg">
                 <img :src="srcValue" class="img-size" @click="clickBanner()">
                 <div class="texts">
                     <div class="user-box">
