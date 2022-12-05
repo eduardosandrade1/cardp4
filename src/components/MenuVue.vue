@@ -21,7 +21,9 @@
         ondrop="return false;"
         :show-action="showActionItems"
       />
-  
+
+      <ActionGeneral />
+
       <ModalInfoItem :itemphonearray="itemphonearray" :chave="chaveArrItem" />
       
       <ModalQrCode :show="showQrCode" :title="titleQrCode" :valueQrCode="urlQrCode" />
@@ -40,6 +42,7 @@
     import ModalQrCode from './ModalQrCode.vue';
     import ModalError from './ModalError.vue';
     import Loading from './Loading.vue';
+    import ActionGeneral from './ActionGeneral.vue';
 
     import menu from '../services/menu';
   
@@ -67,6 +70,7 @@
         ModalQrCode,
         ModalError,
         Loading,
+        ActionGeneral,
       },
       methods: {
         getCurrentUrl(){
@@ -152,7 +156,7 @@
             this.chaveArrItem = indexElement;
             this.itemphonearray = this.items[indexElement]
         },
-        save() {
+        save(simuled = false) {
           let id = 0;
 
           if (sessionStorage.getItem('ID')) id = sessionStorage.getItem('ID')
@@ -165,7 +169,9 @@
               this.loading = false;
               if (res.status === 200) {
                 this.showQrCode = true;
-                this.titleQrCode = "Cardápio feito com sucesso!"
+                if (!simuled) {
+                  this.titleQrCode = "Cardápio feito com sucesso!"
+                }
 
                 if (res.data.url) {
                   this.urlQrCode += '/menu/'+res.data.url;
@@ -255,6 +261,7 @@
       display: flex;
       justify-content: space-evenly;
       flex-direction: column;
+      max-height: 80%;
     }
   </style>
   

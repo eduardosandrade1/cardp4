@@ -122,9 +122,9 @@ export default {
 <style scoped>
 
 .background__{
-    width: 319px;
-    min-height: 650px;
-    max-height: 650px;
+    width: 309px;
+    min-height: 610px;
+    max-height: 610px;
     background-color: #000000;
     border: 3.4px solid #4C4B4B;
     border-radius: 35px;

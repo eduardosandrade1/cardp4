@@ -197,7 +197,7 @@
     justify-content: center;
     align-items: center;
     max-width: 400px;
-    min-height: 700px;
+    min-height: 619px;
     padding: 50px;
     border-radius: 25px;
     box-shadow: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;

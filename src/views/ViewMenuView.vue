@@ -1,6 +1,5 @@
 <template>
-    <Transition name="bounce">
-    <div class="container__view global-transition-view" v-if="!showPreviewItem">
+    <div class="container__view" v-if="!showPreviewItem">
         <div class="itens" v-for="(item, k) in items" @click="showItem(item)">
             <Item 
                 :chave="k"
@@ -17,18 +16,12 @@
             />
         </div>
     </div>
-    </Transition>
-    <Transition name="bounce">
-        <div class="global-transition-view" v-if="showPreviewItem">
-            <PreviewItem :show="showPreviewItem" :item="itemSelected" />
-        </div>
-    </Transition>
+
 </template>
 
 <script>
 
 import Item from '../components/Item.vue'
-import { Transition } from 'vue';
 import PreviewItem from '../components/PreviewItem.vue';
 
 import menu from '../services/menu'
@@ -80,8 +73,7 @@ export default {
 .container__view{
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
 }
 
 .itens {

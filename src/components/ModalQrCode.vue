@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         close(){
-          window.location.href = '/';
+          window.location.reload()
         }
     }
 }
@@ -62,7 +62,7 @@ export default {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     border-radius: 15px;
