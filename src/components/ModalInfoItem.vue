@@ -2,9 +2,20 @@
 
     <div class="container__">
         <div class="background__items_option">
-            <div class="input_item_div border-tb" v-if="itemphonearray.tag == 'img'" >
+            <div class="input_item_div border-tb img-size-hover" v-if="itemphonearray.tag == 'img'" >
                 <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner" accept=".jpg,.png,.jpeg">
                 <img :src="srcValue" class="img-size" @click="clickBanner()">
+                <span class="img-text-hoverable" @click="clickBanner()">
+                  <p>
+                    Clique aqui
+                  </p>
+                  <p>
+                    para adicionar
+                  </p>
+                  <p>
+                    Suam imagem
+                  </p>
+                </span>
             </div>
 
             <div class="input_item_div border-tb" v-else-if="itemphonearray.tag == 'input'">
@@ -51,10 +62,23 @@
               </div>
             </div>
 
-            <div class="input_item_div flex-direction-row border-tb" v-else-if="itemphonearray.tag == 'item'">
+            <div class="input_item_div flex-direction-row border-tb  img-size-hover" v-else-if="itemphonearray.tag == 'item'">
 
                 <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner" accept=".jpg,.png,.jpeg">
-                <img :src="srcValue" class="img-size" @click="clickBanner()">
+                <div class="img">
+                  <span class="img-text-hoverable-item" @click="clickBanner()">
+                    <p>
+                      Clique aqui
+                    </p>
+                    <p>
+                      para adicionar
+                    </p>
+                    <p>
+                      Suam imagem
+                    </p>
+                  </span>
+                  <img :src="srcValue" class="img-size" @click="clickBanner()">
+                </div>
                 <div class="texts">
                     <div class="user-box">
                         <input type="text" name="" maxlength="20" placeholder="Título do item" v-model="itemName">
@@ -68,6 +92,11 @@
                 </div>
 
             </div>
+
+            <div class="input_item_div" v-else-if="itemphonearray.tag == 'bg-img-phone'">
+              teste
+            </div>
+
             <div class="d-flex-text-center" v-else>
               <p>
                 Clique em um item para editá-lo.
@@ -208,9 +237,40 @@
     max-height: 300px;
 }
 
+.img-text-hoverable {
+  visibility: visible;
+}
+
+.img-size-hover {
+  position: relative;
+  cursor: pointer;
+}
+
+.img-text-hoverable {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+}
+.img-text-hoverable-item{
+  position: absolute;
+  top: 30%;
+  left: 35%;
+}
+
+.img-size-hover:hover > .img-text-hoverable {
+  visibility: visible;
+}
+.img-size-hover img{
+  opacity: 0.5;
+}
+
 .flex-direction-row{
     display: flex;
     flex-direction: column;
+}
+
+.texts {
+  margin-top: 25px;
 }
 
 textarea {

@@ -2,8 +2,8 @@
     <Loading v-show="loading"/>
 
 
-    <input type="checkbox" class="" id="c1">
-    <input type="checkbox" class="" id="c2">
+    <input type="checkbox" class="visib-hidden" id="c1">
+    <input type="checkbox" class="visib-hidden" id="c2">
 
     <div class="container__login flip-book">
 
