@@ -1,5 +1,6 @@
 <template>
     <div class="background__">
+        <img src="" alt="" class="background__image">
         <div class="phone-top">
             <div class="camera">
 
@@ -28,7 +29,6 @@
             class="screen__"
             @drop="onDrop($event, 1)"
         >
-            <img src="" alt="" class="background__image">
             <div 
                 class="div_item"
                 v-for="(item, k) in getList()"
@@ -146,8 +146,10 @@ export default {
 
 .background__image {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    min-height: 98%;
+    border-radius: 35px;
+    background-color: #F8F8F8;
 }
 
 .background__ .top__bar{
@@ -155,7 +157,7 @@ export default {
     width: 95%;
     padding: 3px 15px;
     border-radius: 50px 50px 0 0 ;
-    background-color: rgb(247, 247, 247);
+    background-color: rgba(0, 0, 0, 0.548);
     display: flex;
     justify-content: space-between;
 }
@@ -177,7 +179,7 @@ export default {
     width: 95%;
     min-height: 93%;
     max-height: 90%;
-    background-color: #F8F8F8;
+    background-color: transparent;
     border-radius: 0 0 35px 35px;
     display: flex;
     flex-direction: column;
