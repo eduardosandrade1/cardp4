@@ -1,5 +1,6 @@
 <template>
     <div class="container__view" v-if="!showPreviewItem">
+        <img :src="background_phone_preview" alt="" class="background__image">
         <div class="itens" v-for="(item, k) in items" @click="showItem(item)">
             <Item 
                 :chave="k"
@@ -34,6 +35,7 @@ export default {
             itemSelected: {},
             showPreviewItem: false,
             classe: [],
+            background_phone_preview: '',
         }
     },
 
@@ -54,9 +56,24 @@ export default {
         }
 
         menu.getToView(this.$route.params.id, headers).then(res => {
-            this.items = res.data;
+            if (typeof res.data != "undefined") {
+                this.items = res.data.items
+            if (typeof res.data.background != "undefined") {
+                console.log(res.data.background)
+                this.background_phone_preview = res.data.background
+            }
+        }
         }).catch(failed => {
-            console.log(failed)
+            if (401 == failed.response.status) {
+
+                this.error = true
+                this.titleError = "Sessão expirada!"
+                this.messageError = "Por favor, efetue o login novamente!";
+
+                setTimeout(() => {
+                window.location.href = '/';
+                }, 7000)
+            }
         });
     },
     components: {
@@ -69,11 +86,22 @@ export default {
 </script>
 
 <style>
-
+#app {
+    padding: none !important;
+}
 .container__view{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     width: 100%;
+}
+
+.background__image {
+    position: absolute;
+    width: 95%;
+    min-height: 98%;
+    border-radius: 35px;
+    background-color: #F8F8F8;
+    max-height: 98%;
 }
 
 .itens {
