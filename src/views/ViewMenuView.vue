@@ -87,7 +87,7 @@ export default {
 
 <style>
 #app {
-    padding: none !important;
+    padding: 0 !important;
 }
 .container__view{
     display: flex;
