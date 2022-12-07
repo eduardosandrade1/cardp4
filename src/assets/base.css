@@ -113,3 +113,4 @@ body input, textarea, span, p, label, button, div {
 .d-flex .align-item-center {
   align-items: center;
 }
+.invert { filter: invert(100%); }

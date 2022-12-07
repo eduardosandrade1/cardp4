@@ -12,7 +12,7 @@
     </div>
 
     <Phone @dragenter.prevent @dragover.prevent ondragstart="return false;" ondrop="return false;"
-      :show-action="showActionItems" />
+      :show-action="showActionItems" ref="Phone" />
 
     <ActionGeneral />
 
@@ -53,6 +53,10 @@ export default {
       titleError: '',
       showActionItems: true,
       loading: false,
+      configPhone: {
+        refImage: '',
+        linkPreview: '',
+      }
     }
   },
   components: {
@@ -110,8 +114,8 @@ export default {
             time: (i / 100),
             description: 'Descrição do item',
             price: 0.99,
-            classe_titilo: 'title',
-            classe_descricao: 'description',
+            classe_titilo: ['title'],
+            classe_descricao: ['description'],
           },
         );
       }
@@ -146,22 +150,28 @@ export default {
 
     showInfoDiv(typeItem, indexElement) {
       if (typeItem == 'bg-img-phone') {
-        
+        this.itemphonearray = {
+          tag: 'bg-img-phone',
+          linkPreview: '',
+          refImage: '',
+        };
         return false;
       }
       this.chaveArrItem = indexElement;
       this.itemphonearray = this.items[indexElement]
     },
+
     save(simuled = false) {
       let id = 0;
 
       if (sessionStorage.getItem('ID')) id = sessionStorage.getItem('ID')
       const headers = { 'Content-Type': 'multipart/form-data, application/json' };
+      const config = this.configPhone;
       this.loading = true;
 
       if (this.items.length > 0) {
 
-        Menu.save(this.items, id, headers).then(res => {
+        Menu.save(this.items, id, config, headers).then(res => {
           this.loading = false;
           if (res.status === 200) {
             this.showQrCode = true;
@@ -192,6 +202,9 @@ export default {
         this.messageError = "Necessário ter ao menos um item em tela"
       }
 
+    },
+    clickBanner() {
+      this.$refs.Phone.clickBanner();
     }
   },
   mounted() {
@@ -201,18 +214,26 @@ export default {
         'Authorization': tk,
       }
       menu.get(sessionStorage.getItem('ID'), headers).then(res => {
-        if (res.data.length > 0)
-          this.items = res.data;
-        if (401 == res.status) {
+
+        if (typeof res.data != "undefined") {
+          this.items = res.data.items;
+          if (typeof res.data.background != "undefined") {
+            this.configPhone.linkPreview = res.data.background
+          }
+        }
+       
+      }).catch(failed => {
+
+        if (401 == failed.response.status) {
+
           this.error = true
           this.titleError = "Sessão expirada!"
           this.messageError = "Por favor, efetue o login novamente!";
+
           setTimeout(() => {
             window.location.href = '/';
-          }, 6000)
+          }, 7000)
         }
-      }).catch(failed => {
-        console.log(failed)
       });
     }
   }

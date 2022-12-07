@@ -10,6 +10,8 @@
                     <vue-qrcode
                         :value="valueQrCode"
                         :width="200"
+                        :type="'image/png'"
+                        :color="{ dark: '#000000ff', light: '#ffffffff' }"
                     />
                 </div>
                 <p class="text-danger">{{ message }}</p>

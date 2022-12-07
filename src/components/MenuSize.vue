@@ -2,9 +2,25 @@
 
     <div class="container__">
         <div class="menu_size__">
-            <div class="div_item" v-for="item in getMenu()" draggable="true" @dragstart="startDrag($event, item)">
-                <Item :key="item.id" :type="item.tag" :src="item.path" :alt="item.alt" :value="item.value"
-                    :place_item="''" :name="item.name" :description="item.description" :price="item.price" />
+            <div 
+                class="div_item" 
+                v-for="item in getMenu()" 
+                draggable="true" 
+                @dragstart="startDrag($event, item)"
+            >
+                <Item 
+                    :key="item.id" 
+                    :classeTitilo="item.classe_titilo"
+                    :classeDescricao="item.classe_descricao"
+                    :type="item.tag" 
+                    :src="item.path" 
+                    :alt="item.alt" 
+                    :value="item.value"
+                    :place_item="''" 
+                    :name="item.name" 
+                    :description="item.description" 
+                    :price="item.price" 
+                />
             </div>
         </div>
     </div>

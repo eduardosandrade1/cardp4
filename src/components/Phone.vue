@@ -1,18 +1,20 @@
 <template>
+<!-- src="https://i.pinimg.com/736x/43/99/70/439970978afe5410fdc8d1d7b272453e.jpg" -->
     <div class="background__">
-        <img src="" alt="" class="background__image">
+        <img :src="background_phone_preview" alt="" class="background__image">
+        <input type="file" name="" id="" ref="background__image" @change="uploadFile()" accept=".jpg,.png,.jpeg" />
         <div class="phone-top">
             <div class="camera">
 
             </div>
         </div>
         <div class="top__bar">
-            <div class="left">
+            <div class="left invert">
                 <span class="time">
                     {{hour}}
                 </span>
             </div>
-            <div class="right">
+            <div class="right invert">
                 <div class="mobile-network">
                     <img class="icon" src="../assets/icons/signal.png" alt="" >
                 </div>
@@ -62,11 +64,11 @@ import Item from './Item.vue';
 export default {
     name: "Phone",
     props: [
-        'type', 'src', 'alt', 'value', 'showAction',
+        'type', 'src', 'alt', 'value', 'showAction', 'background_phone_preview',
     ],
     data() {
         return {
-            hour: ""
+            hour: "",
         }
     },
     created() {
@@ -114,6 +116,22 @@ export default {
 
         showInfoDiv(typeItem, indexElement) {
             this.$parent.showInfoDiv(typeItem, indexElement)
+        },
+        uploadFile() {
+            const linkPreview = window.URL.createObjectURL(this.$refs.background__image.files[0]);
+            this.$parent.configPhone.linkPreview    = linkPreview;
+            this.$parent.configPhone.refImage       = this.$refs.background__image.files[0];
+        },
+        clickBanner() {
+            this.$refs.background__image.click();
+            return false
+        },
+    },
+    computed: {
+        background_phone_preview: {
+            get() {
+                return typeof this.$parent.configPhone.linkPreview == "undefined" || this.$parent.configPhone.linkPreview == '' ? this.background_phone_preview : this.$parent.configPhone.linkPreview ;
+            }, 
         }
     }
 }
@@ -150,6 +168,7 @@ export default {
     min-height: 98%;
     border-radius: 35px;
     background-color: #F8F8F8;
+    max-height: 98%;
 }
 
 .background__ .top__bar{
@@ -157,7 +176,7 @@ export default {
     width: 95%;
     padding: 3px 15px;
     border-radius: 50px 50px 0 0 ;
-    background-color: rgba(0, 0, 0, 0.548);
+    background-color: #0000001c;
     display: flex;
     justify-content: space-between;
 }
@@ -179,7 +198,7 @@ export default {
     width: 95%;
     min-height: 93%;
     max-height: 90%;
-    background-color: transparent;
+    background-color: #0000001c;
     border-radius: 0 0 35px 35px;
     display: flex;
     flex-direction: column;

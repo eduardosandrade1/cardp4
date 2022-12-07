@@ -41,7 +41,7 @@ export default {
             this.$parent.save(simuled);
         },
         editBackground() {
-            this.$parent.showInfoDiv('bg-img-phone', 0)
+            this.$parent.clickBanner();
         }
     }
 
