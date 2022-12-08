@@ -4,11 +4,13 @@
 
     <input type="checkbox" class="visib-hidden" id="c1">
     <input type="checkbox" class="visib-hidden" id="c2">
+    <input type="checkbox" class="visib-hidden" id="c3">
 
     <div class="container__login flip-book">
 
         <loginArea />
         <CapaArea />
+        <CadastrarView />
     </div>
 
 </template>
@@ -18,6 +20,7 @@
     import Loading from '../components/Loading.vue'
     import LoginArea from '../components/pages/LoginArea.vue'
     import CapaArea from '../components/pages/CapaArea.vue'
+    import CadastrarView from './CadastrarView.vue'
 
     export default {
         data() {
@@ -29,6 +32,7 @@
             Loading,
             LoginArea,
             CapaArea,
+            CadastrarView,
         }
     }
 
@@ -109,8 +113,8 @@
     }
     .back-btn {
     position: absolute;
-    bottom: 13px;
-    right: 13px;
+    /* bottom: 13px;
+    right: 13px; */
     cursor: pointer;
     }
     #p1 {
@@ -123,12 +127,15 @@
     z-index: 1;
     }
     #c1:checked ~ .flip-book #p1 {
+    background-color: #000;
     transform: rotateY(-180deg);
     z-index: 1;
     }
     #c2:checked ~ .flip-book #p2 {
     transform: rotateY(-180deg);
     z-index: 2;
+    background-color: #000;
+
     }
     #c3:checked ~ .flip-book #p3 {
     transform: rotateY(-180deg);

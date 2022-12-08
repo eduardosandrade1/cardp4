@@ -28,14 +28,14 @@
         </div>
         <div class="register">
             <div class="link-register">
-                <a>
+                <label for="c2" class="next-btn">
                     Quero me cadastrar
-                </a>
+                </label>
             </div>
             <div class="link-forgot-pass">
-                <a>
+                <label class="">
                     Esqueci a senha
-                </a>
+                </label>
             </div>
         </div>
         <label for="c1" class="back-btn color-black">Voltar</label>
@@ -116,9 +116,10 @@
     }
 
     .container__login .login-area {
-        border-radius: 15px 0 0 15px;
+        border-radius: 0 15px 15px 0;
         margin: auto;
         width: 100%;
+        background-color: #fff;
     }
 
     .container__login .login-area .container-center {

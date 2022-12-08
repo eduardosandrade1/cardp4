@@ -33,7 +33,6 @@
 
 .container__login .explain-area .text{
     color: white;
-    /* font-size: 36px; */
     font-size: 2.1vw;
 }
 .container__login .explain-area .content {
