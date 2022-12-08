@@ -1,12 +1,16 @@
 <template>
+    <Loading v-show="showLoading" />
     <div class="register-area flip" id="p3">
         <div class="container-center">
             <form v-on:submit="doRegister($event)">
                 <div class="input-group">
+                    <input type="text" placeholder="Seu nome" minlength="10" maxlength="100" v-model="nome" required>
+                </div>
+                <div class="input-group">
                     <input type="email" placeholder="Email" v-model="email" required>
                 </div>
                 <div class="input-group">
-                    <input type="password" placeholder="Senha" min="8" v-model="password" required>
+                    <input type="password" placeholder="Senha" minlength="8" maxlength="20" v-model="password" required>
                     <div class="role-password">
                         <ul>
                             <li>
@@ -29,7 +33,7 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <input type="password" @focusout="PasswordEqual()" placeholder="Confirmar senha" min="8" v-model="password_confirm" required>
+                    <input type="password" placeholder="Confirmar senha" min="8" v-model="password_confirm" required>
                 </div>
 
                 <span class="text-danger error" v-if="error">
@@ -47,14 +51,20 @@
 
 <script>
 
+import Loading from '../components/Loading.vue'
+
+import register from '../services/register'
+
 export default {
 
     data() {
         return {
+            nome: '',
             email: '',
             password: '',
             password_confirm: '',
             error: '',
+            showLoading: false,
             validations: {
                 specialChars: 'invalid',
                 uppercase: 'invalid',
@@ -68,7 +78,24 @@ export default {
             if ( ! this.validatePassword() ) {
                 e.preventDefault();
             }
-            
+
+            let params = {
+                nome: this.nome,
+                email: this.email,
+                password: this.password,
+                password_confirm: this.password_confirm,
+            };
+
+            register.do(params).then( res => {
+
+                console.log(res)
+
+            }).catch(erro => {
+                console.log(erro)
+                alert('erro')
+            });
+            e.preventDefault();
+
         },
         validatePassword() {
             for( let validate in this.validations ) {
@@ -120,6 +147,9 @@ export default {
                 return this.password
             }
         }
+    },
+    components: {
+        Loading,
     }
 
 }
@@ -143,6 +173,7 @@ export default {
     margin: auto;
     width: 100%;
     background-color: #fff;
+    height: 100%;
 
 }
 

@@ -114,3 +114,13 @@ body input, textarea, span, p, label, button, div {
   align-items: center;
 }
 .invert { filter: invert(100%); }
+
+.hidden-print {
+  display: inline;
+}
+
+@media print {
+  .hidden-print {
+    display: none;
+  }
+}

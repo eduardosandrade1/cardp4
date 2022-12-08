@@ -3,14 +3,14 @@
 
 
     <input type="checkbox" class="visib-hidden" id="c1">
-    <input type="checkbox" class="visib-hidden" id="c2">
+    <input type="checkbox" class="visib-hidden" id="c2" ref="c2">
     <input type="checkbox" class="visib-hidden" id="c3">
 
-    <div class="container__login flip-book">
+    <div class="container__login flip-book hidden-print">
 
-        <loginArea />
-        <CapaArea />
-        <CadastrarView />
+        <loginArea class="hidden-print" />
+        <CapaArea class="hidden-print" />
+        <CadastrarView class="hidden-print" />
     </div>
 
 </template>

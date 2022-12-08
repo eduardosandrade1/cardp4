@@ -2,6 +2,12 @@
 
     <div class="container__">
         <div class="menu_size__">
+            <h1>
+                Olá, bem vindo.
+            </h1>
+            <h3 class="text-center no-focus">
+                Podemos começar arrastando os itens até o celular
+            </h3>
             <div 
                 class="div_item" 
                 v-for="item in getMenu()" 

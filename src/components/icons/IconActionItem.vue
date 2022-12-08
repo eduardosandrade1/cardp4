@@ -5,7 +5,7 @@
                 <img src="../../assets/icons/up-arrow.png" alt="" class="icon">
             </div>
             <div class="bottom invert" @click="toBottom()">
-                <img src="../../assets/icons/chevron.png" alt="" class="icon">
+                <img src="../../assets/icons/down-arrow.png" alt="" class="icon">
             </div>
             <div class="trash invert" :chave="chave" @click="toTrash()">
                 <img src="../../assets/icons/delete.png" alt="" class="icon">
@@ -47,7 +47,6 @@ export default {
         justify-content: space-around;
         background-color: #0000004d;
         margin-left: 4px;
-        border-radius: 10px;
     }
 
     .space_opt_items div {

@@ -198,7 +198,6 @@ export default {
     width: 95%;
     min-height: 93%;
     max-height: 90%;
-    background-color: #0000001c;
     border-radius: 0 0 35px 35px;
     display: flex;
     flex-direction: column;

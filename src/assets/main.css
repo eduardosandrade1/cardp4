@@ -135,3 +135,7 @@ input[type="file"] {
   transition: width 1s, height 2s, background-color 2s, transform 2s;
   background-color: rgb(0, 0, 0);
 }
+
+.no-focus {
+  color: #909090;
+}

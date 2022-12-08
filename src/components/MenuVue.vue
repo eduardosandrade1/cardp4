@@ -6,9 +6,9 @@
 
     <div class="actions">
       <MenuSize @dragenter.prevent @dragover.prevent />
-      <button class="btn btn-primary btn-lg" @click="save()">
+      <!-- <button class="btn btn-primary btn-lg" @click="save()">
         Salvar
-      </button>
+      </button> -->
     </div>
 
     <Phone @dragenter.prevent @dragover.prevent ondragstart="return false;" ondrop="return false;"

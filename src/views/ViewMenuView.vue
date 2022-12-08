@@ -86,9 +86,7 @@ export default {
 </script>
 
 <style>
-#app {
-    padding: 0 !important;
-}
+
 .container__view{
     display: flex;
     flex-direction: column;
@@ -97,15 +95,15 @@ export default {
 
 .background__image {
     position: absolute;
-    width: 95%;
-    min-height: 98%;
-    border-radius: 35px;
+    width: 100%;
+    min-height: 100%;
     background-color: #F8F8F8;
-    max-height: 98%;
+    max-height: 100%;
 }
 
 .itens {
     margin-top: 18px;
+    padding: 2rem;
 }
 
 .bounce-enter-active {

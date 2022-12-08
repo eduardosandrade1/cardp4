@@ -1,27 +1,28 @@
 <template>
     <div id="myModal" class="modal" v-show="show">
         <div class="modal-content">
-            <span class="close" @click="close()">&times;</span>
+            <span class="close hidden-print" @click="close()">&times;</span>
             <div class="content">
-                <h1>
+                <h1 class="hidden-print">
                   {{ title }}
                 </h1>
                 <div class="qrcode">
                     <vue-qrcode
                         :value="valueQrCode"
-                        :width="200"
+                        :width="400"
                         :type="'image/png'"
                         :color="{ dark: '#000000ff', light: '#ffffffff' }"
                     />
                 </div>
-                <p class="text-danger">{{ message }}</p>
+                <p class="text-danger hidden-print">{{ message }}</p>
 
                 <div class="user-box">
                     <input type="email" name="" id="" class="input-border-black">
-                    <label for="">Email</label>
+                    <label for="" class="hidden-print">Email</label>
                 </div>
 
-                <button class="btn btn-primary">Enviar</button>
+                <button class="btn btn-primary hidden-print">Enviar</button>
+                <button class="btn btn-primary hidden-print" @click="imprimir()">Imprimir</button>
             </div>
         </div>
     
@@ -40,6 +41,9 @@ export default {
     methods: {
         close(){
           window.location.reload()
+        },
+        imprimir(){
+          window.print()
         }
     }
 }
@@ -64,9 +68,8 @@ export default {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto; /* 15% from the top and centered */
+    margin: 10px auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
     border-radius: 15px;
     width: 80%; /* Could be more or less, depending on screen size */
     display: flex;
@@ -224,4 +227,7 @@ a span:nth-child(4) {
   }
 }
 
+@media print {
+
+}
 </style>
