@@ -1,9 +1,9 @@
 <template >
 
 <div class="container" v-show="show">
-    <div v-for="it in item">
-        {{ it }}
-        foi
+    <button @click="back()">back</button>
+    <div class="container-img-preview">
+        <img :src="item.path" class="img-preview" alt="" srcset="">
     </div>
 </div>
 
@@ -16,8 +16,28 @@ export default {
     props: [
         'item',
         'show',
-    ]
+    ],
+
+    methods: {
+        back() {
+            this.$parent.showPreviewItem = false;
+        }
+    }
 
 }
 
 </script>
+
+<style>
+
+.container-img-preview {
+    width: 100%;
+}
+
+.img-preview {
+    width: 100%;
+}
+
+
+
+</style>

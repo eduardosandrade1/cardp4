@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         close(){
-          window.location.href = '/';
+          window.location.reload();
         }
     }
 }

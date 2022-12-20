@@ -1,20 +1,23 @@
 <template>
     <Transition name="bounce">
     <div class="container__view global-transition-view" v-if="!showPreviewItem">
-        <div class="itens" v-for="(item, k) in items" @click="showItem(item)">
-            <Item 
-                :chave="k"
-                :type="item.tag"
-                :class="item.classe"
-                :src="item.path"
-                :alt="item.alt"
-                :value="item.value"
-                :place_item="'screen'"
-                :name="item.name"
-                :description="item.description"
-                :price="item.price"
-                :show-action="false"
-            />
+        <div class="itens" v-for="(item, k) in items">
+            <div  @click="showItem(item, k)">
+                <Item 
+                    :chave="k"
+                    :type="item.tag"
+                    :class="item.classe"
+                    :src="item.path"
+                    :alt="item.alt"
+                    :value="item.value"
+                    :place_item="'screen'"
+                    :name="item.name"
+                    :description="item.description"
+                    :price="item.price"
+                    :show-action="false"
+                />                
+            </div>
+            
         </div>
     </div>
     </Transition>
@@ -45,10 +48,12 @@ export default {
     },
 
     methods: {
-        showItem(item) {
-            console.log(item)
-            this.itemSelected = item
-            this.showPreviewItem = true
+        showItem(item, k) {
+            if ( typeof item != 'undefined' && item.tag != 'img' && item.tag != 'input' ) {
+                this.itemSelected = item
+                this.showPreviewItem = true
+            }
+
         }
     },
     mounted () {
@@ -78,10 +83,10 @@ export default {
 <style>
 
 .container__view{
-    display: flex;
+    /* display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
 }
 
 .itens {
