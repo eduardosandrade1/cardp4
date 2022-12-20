@@ -2,10 +2,11 @@ import { http } from "./config";
 
 export default {
 
-    save: (items, id, headers = {}) => {
+    save: (items, id, conf, headers = {}) => {
         let params = {
             items: items,
-            ID: id
+            ID: id,
+            conf: conf,
         }
 
         return http.post('menu', params, {

@@ -1,13 +1,13 @@
 <template>
 
     <div class="space_opt_items" v-if="place_item == 'screen'">
-            <div class="top" @click="toTop()">
+            <div class="top invert" @click="toTop()">
                 <img src="../../assets/icons/up-arrow.png" alt="" class="icon">
             </div>
-            <div class="bottom" @click="toBottom()">
-                <img src="../../assets/icons/chevron.png" alt="" class="icon">
+            <div class="bottom invert" @click="toBottom()">
+                <img src="../../assets/icons/down-arrow.png" alt="" class="icon">
             </div>
-            <div class="trash" :chave="chave" @click="toTrash()">
+            <div class="trash invert" :chave="chave" @click="toTrash()">
                 <img src="../../assets/icons/delete.png" alt="" class="icon">
             </div>
         </div>
@@ -42,11 +42,10 @@ export default {
 
     .space_opt_items{
         display: flex;
-        justify-content: center;
         flex-direction: column;
         color: black;
         justify-content: space-around;
-        background-color: transparent;
+        background-color: #0000004d;
         margin-left: 4px;
     }
 

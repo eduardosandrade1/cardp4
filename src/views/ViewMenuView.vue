@@ -1,37 +1,28 @@
 <template>
-    <Transition name="bounce">
-    <div class="container__view global-transition-view" v-if="!showPreviewItem">
-        <div class="itens" v-for="(item, k) in items">
-            <div  @click="showItem(item, k)">
-                <Item 
-                    :chave="k"
-                    :type="item.tag"
-                    :class="item.classe"
-                    :src="item.path"
-                    :alt="item.alt"
-                    :value="item.value"
-                    :place_item="'screen'"
-                    :name="item.name"
-                    :description="item.description"
-                    :price="item.price"
-                    :show-action="false"
-                />                
-            </div>
-            
+    <div class="container__view" v-if="!showPreviewItem">
+        <img :src="background_phone_preview" alt="" class="background__image">
+        <div class="itens" v-for="(item, k) in items" @click="showItem(item)">
+            <Item 
+                :chave="k"
+                :type="item.tag"
+                :class="item.classe"
+                :src="item.path"
+                :alt="item.alt"
+                :value="item.value"
+                :place_item="'screen'"
+                :name="item.name"
+                :description="item.description"
+                :price="item.price"
+                :show-action="false"
+            />
         </div>
     </div>
-    </Transition>
-    <Transition name="bounce">
-        <div class="global-transition-view" v-if="showPreviewItem">
-            <PreviewItem :show="showPreviewItem" :item="itemSelected" />
-        </div>
-    </Transition>
+
 </template>
 
 <script>
 
 import Item from '../components/Item.vue'
-import { Transition } from 'vue';
 import PreviewItem from '../components/PreviewItem.vue';
 
 import menu from '../services/menu'
@@ -44,6 +35,7 @@ export default {
             itemSelected: {},
             showPreviewItem: false,
             classe: [],
+            background_phone_preview: '',
         }
     },
 
@@ -66,9 +58,24 @@ export default {
         }
 
         menu.getToView(this.$route.params.id, headers).then(res => {
-            this.items = res.data;
+            if (typeof res.data != "undefined") {
+                this.items = res.data.items
+            if (typeof res.data.background != "undefined") {
+                console.log(res.data.background)
+                this.background_phone_preview = res.data.background
+            }
+        }
         }).catch(failed => {
-            console.log(failed)
+            if (401 == failed.response.status) {
+
+                this.error = true
+                this.titleError = "Sessão expirada!"
+                this.messageError = "Por favor, efetue o login novamente!";
+
+                setTimeout(() => {
+                window.location.href = '/';
+                }, 7000)
+            }
         });
     },
     components: {
@@ -83,14 +90,29 @@ export default {
 <style>
 
 .container__view{
+<<<<<<< HEAD
     /* display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center; */
+=======
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.background__image {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    background-color: #F8F8F8;
+    max-height: 100%;
+>>>>>>> 4ef4395bb274299da65d3c2ba8abb37a879d4c21
 }
 
 .itens {
     margin-top: 18px;
+    padding: 2rem;
 }
 
 .bounce-enter-active {

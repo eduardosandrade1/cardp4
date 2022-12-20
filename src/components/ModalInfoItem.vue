@@ -1,10 +1,21 @@
 <template>
 
-    <div class="container__">
+    <div class="container__" ondragstart="return false;" ondrop="return false;">
         <div class="background__items_option">
-            <div class="input_item_div border-tb" v-if="itemphonearray.tag == 'img'" >
+            <div class="input_item_div border-tb img-size-hover" v-if="itemphonearray.tag == 'img'" >
                 <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner" accept=".jpg,.png,.jpeg">
                 <img :src="srcValue" class="img-size" @click="clickBanner()">
+                <span class="img-text-hoverable" @click="clickBanner()">
+                  <p>
+                    Clique aqui
+                  </p>
+                  <p>
+                    para adicionar
+                  </p>
+                  <p>
+                    Suam imagem
+                  </p>
+                </span>
             </div>
 
             <div class="input_item_div border-tb" v-else-if="itemphonearray.tag == 'input'">
@@ -51,23 +62,90 @@
               </div>
             </div>
 
-            <div class="input_item_div flex-direction-row border-tb" v-else-if="itemphonearray.tag == 'item'">
+            <div class="input_item_div flex-direction-row border-tb  img-size-hover" v-else-if="itemphonearray.tag == 'item'">
 
                 <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner" accept=".jpg,.png,.jpeg">
-                <img :src="srcValue" class="img-size" @click="clickBanner()">
-                <div class="texts">
-                    <div class="user-box">
-                        <input type="text" name="" maxlength="20" placeholder="Título do item" v-model="itemName">
-                        <label>Título</label>
-                    </div>
-                    <div class="user-box">
-                        <input type="number" name="" step='0.01' maxlength="20" placeholder="Preço" v-model="itemPrice">
-                        <label>Preço</label>
-                    </div>
-                    <textarea name="" id="" cols="30" rows="3" maxlength="40" placeholder="Descrição..." v-model="description"></textarea>
+                <div class="img">
+                  <span class="img-text-hoverable-item" @click="clickBanner()">
+                    <p>
+                      Clique aqui
+                    </p>
+                    <p>
+                      para adicionar
+                    </p>
+                    <p>
+                      Suam imagem
+                    </p>
+                  </span>
+                  <img :src="srcValue" class="img-size" @click="clickBanner()">
                 </div>
+                <div class="texts">
+                  <div class="user-box">
+                      <input type="text" name="" maxlength="20" placeholder="Título do item" v-model="itemName">
+                      <label>Título</label>
+                  </div>
+                  <div class="user-box">
+                      <input type="number" name="" step='0.01' maxlength="20" placeholder="Preço" v-model="itemPrice">
+                      <label>Preço</label>
+                  </div>
+                  <textarea name="" id="" cols="30" rows="3" maxlength="40" placeholder="Descrição..." v-model="description"></textarea>
 
+                  <div class="">
+                    <label for="">Alinhamento</label>
+                  <div class="options-style">
+                    <div class="text-start" @click="alignClass(`text-start`)">
+                      <img src="../assets/icons/align-left.png" alt="" class="icon">
+                    </div>
+                    <div class="text-center" @click="alignClass(`text-center`)">
+                      <img src="../assets/icons/align-center.png" alt="" class="icon">
+                    </div>
+                    <div class="text-end" @click="alignClass(`text-end`)">
+                      <img src="../assets/icons/align-right.png" alt="" class="icon">
+                    </div>
+                  </div>
+                  <label for="">Cor da fonte</label>
+                  <div class="options-style">
+                    <div class="primary" @click="addColor('color-primary')">
+                      <div class="div-color-primary">
+
+                      </div>
+                    </div>
+                    <div class="secondary" @click="addColor('color-secondary')">
+                      <div class="div-color-secondary">
+
+                      </div>
+                    </div>
+                    <div class="tertiary" @click="addColor('color-tertiary')">
+                      <div class="div-color-tertiary">
+
+                      </div>
+                    </div>
+                    <div class="quartiary" @click="addColor('color-quartiary')">
+                      <div class="div-color-quartiary">
+
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+              </div>
             </div>
+
+            <div class="input_item_div" v-else-if="itemphonearray.tag == 'bg-img-phone'">
+              <input type="file" name="" id="" @change="uploadFile()" ref="input_file_banner" accept=".jpg,.png,.jpeg">
+              <img :src="itemphonearray.linkPreview" class="img-size" @click="clickBanner()">
+              <span class="img-text-hoverable" @click="clickBanner()">
+                <p>
+                  Clique aqui
+                </p>
+                <p>
+                  para adicionar
+                </p>
+                <p>
+                  Suam imagem
+                </p>
+              </span>
+            </div>
+
             <div class="d-flex-text-center" v-else>
               <p>
                 Clique em um item para editá-lo.
@@ -78,116 +156,115 @@
 
 </template>
 <script>
-  import menu from '../services/menu';
-    export default {
-        props: ['itemphonearray', 'chave'],
-        data() {
-            return {
-                
-            }
-        },
-        methods: {
-          alignClass (align) {
-            let classe = this.$parent.items[this.chave].classe;
+  export default {
+      props: ['itemphonearray', 'chave'],
+      data() {
+          return {
+              
+          }
+      },
+      methods: {
+        alignClass (align) {
+          let classe = this.$parent.items[this.chave].classe;
 
-            if (classe) {
-              classe.forEach((element, index) => {
-                let pos = element.indexOf('text-');
-                if (pos > -1){
-                  classe.splice(index, 1);
-                }
-              });
-            } else {
-              this.$parent.items[this.chave].classe = []
-            }
-            
-            (this.$parent.items[this.chave].classe).push(align);
-
-          },
-          addColor (nameClass) {
-            let classe = this.$parent.items[this.chave].classe;
-
+          if (classe) {
             classe.forEach((element, index) => {
-              let pos = element.indexOf('color-');
+              let pos = element.indexOf('text-');
               if (pos > -1){
                 classe.splice(index, 1);
               }
             });
-
-            (classe).push(nameClass);
-          },
-          uploadFile() {
-            let linkPreview = window.URL.createObjectURL(this.$refs.input_file_banner.files[0]);
-
-            let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-            it.linkPreview = ''
-            it.refImage = ''
-            it.refImage = this.$refs.input_file_banner.files[0];
-            it.linkPreview = linkPreview;
-
-            this.$parent.items.splice(this.chave, 1);
-            this.$parent.items.splice(this.chave, 0, it)
-          },
-          clickBanner() {
-            this.$refs.input_file_banner = '';
-            this.$refs.input_file_banner.click();
+          } else {
+            this.$parent.items[this.chave].classe = []
           }
+          
+          (this.$parent.items[this.chave].classe).push(align);
+
         },
-        computed: {
-            valueInput: {
-                get() {
-                    return this.$parent.items[this.chave].value;
-                },
-                set(val) {
-                    let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-                    it.value = val;
-                    this.$parent.items.splice(this.chave, 1);
-                    this.$parent.items.splice(this.chave, 0, it)
-                }
-            },
-            srcValue: {
-                get() {
-                  if (typeof this.$parent.items[this.chave].linkPreview == 'undefined' || this.$parent.items[this.chave].linkPreview == '') {
-                    return this.$parent.items[this.chave].path
-                  }
-                  return this.$parent.items[this.chave].linkPreview;
-                }
-            },
-            itemName: {
-                get() {
-                    return this.$parent.items[this.chave].name;
-                },
-                set(val) {
-                    let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-                    it.name = val;
-                    this.$parent.items.splice(this.chave, 1);
-                    this.$parent.items.splice(this.chave, 0, it)
-                }
-            },
-            description : {
-                get() {
-                    return this.$parent.items[this.chave].description;
-                },
-                set(val) {
-                    let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-                    it.description = val;
-                    this.$parent.items.splice(this.chave, 1);
-                    this.$parent.items.splice(this.chave, 0, it)
-                }
-            }, 
-            itemPrice: {
-                get() {
-                    return this.$parent.items[this.chave].price;
-                },
-                set(val) {
-                    let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
-                    it.price = val;
-                    this.$parent.items.splice(this.chave, 1);
-                    this.$parent.items.splice(this.chave, 0, it)
-                }
+        addColor (nameClass) {
+          let classe = this.$parent.items[this.chave].classe;
+
+          classe.forEach((element, index) => {
+            let pos = element.indexOf('color-');
+            if (pos > -1){
+              classe.splice(index, 1);
             }
+          });
+
+          (classe).push(nameClass);
         },
-    }
+        uploadFile() {
+          let linkPreview = window.URL.createObjectURL(this.$refs.input_file_banner.files[0]);
+
+          let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
+          it.linkPreview = ''
+          it.refImage = ''
+          it.refImage = this.$refs.input_file_banner.files[0];
+          it.linkPreview = linkPreview;
+
+          this.$parent.items.splice(this.chave, 1);
+          this.$parent.items.splice(this.chave, 0, it)
+        },
+        clickBanner() {
+          this.$refs.input_file_banner = '';
+          this.$refs.input_file_banner.click();
+        }
+      },
+      computed: {
+          valueInput: {
+              get() {
+                  return this.$parent.items[this.chave].value;
+              },
+              set(val) {
+                  let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
+                  it.value = val;
+                  this.$parent.items.splice(this.chave, 1);
+                  this.$parent.items.splice(this.chave, 0, it)
+              }
+          },
+          srcValue: {
+              get() {
+                if (typeof this.$parent.items[this.chave].linkPreview == 'undefined' || this.$parent.items[this.chave].linkPreview == '') {
+                  return this.$parent.items[this.chave].path
+                }
+                return this.$parent.items[this.chave].linkPreview;
+              }
+          },
+          itemName: {
+              get() {
+                  return this.$parent.items[this.chave].name;
+              },
+              set(val) {
+                  let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
+                  it.name = val;
+                  this.$parent.items.splice(this.chave, 1);
+                  this.$parent.items.splice(this.chave, 0, it)
+              }
+          },
+          description : {
+              get() {
+                  return this.$parent.items[this.chave].description;
+              },
+              set(val) {
+                  let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
+                  it.description = val;
+                  this.$parent.items.splice(this.chave, 1);
+                  this.$parent.items.splice(this.chave, 0, it)
+              }
+          }, 
+          itemPrice: {
+              get() {
+                  return this.$parent.items[this.chave].price;
+              },
+              set(val) {
+                  let it = JSON.parse(JSON.stringify(this.$parent.items[this.chave]))
+                  it.price = val;
+                  this.$parent.items.splice(this.chave, 1);
+                  this.$parent.items.splice(this.chave, 0, it)
+              }
+          }
+      },
+  }
 
 </script>
 
@@ -197,10 +274,12 @@
     justify-content: center;
     align-items: center;
     max-width: 400px;
-    min-height: 700px;
+    min-height: 619px;
     padding: 50px;
     border-radius: 25px;
     box-shadow: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+    overflow: auto;
+    max-height: 619px;
 }
 .img-size{
     width: 100%;
@@ -208,9 +287,50 @@
     max-height: 300px;
 }
 
+.img-text-hoverable {
+  visibility: visible;
+}
+
+.img-size-hover {
+  position: relative;
+  cursor: pointer;
+}
+
+.img-text-hoverable {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+}
+.img-text-hoverable-item{
+  position: absolute;
+  top: 30%;
+  left: 35%;
+}
+
+.img-size-hover:hover > .img-text-hoverable {
+  visibility: visible;
+}
+.img-size-hover img{
+  opacity: 0.5;
+}
+
 .flex-direction-row{
     display: flex;
     flex-direction: column;
+}
+
+.texts {
+  margin-top: 25px;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.img img{
+  height: 130px;
+  width: 50%;
 }
 
 textarea {
@@ -262,6 +382,7 @@ body {
   color: #000000;
   font-size: 12px;
 }
+
 
 a {
   position: relative;
