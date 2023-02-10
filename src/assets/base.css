@@ -78,7 +78,6 @@
 }
 
 body {
-  min-height: 100vh;
   background: rgb(255,255,255);
   background: #fff;/*linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 35%, rgba(128,128,128,1) 100%);*/
   transition: color 0.5s, background-color 0.5s;

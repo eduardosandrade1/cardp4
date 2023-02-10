@@ -241,10 +241,11 @@ export default {
 
 </script>
   
-<style>
+<style scoped>
 
 #container__items {
   width: 100%;
+  margin-top: 5vh;
   display: flex;
   justify-content: space-evenly;
 }

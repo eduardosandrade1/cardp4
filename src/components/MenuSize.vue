@@ -67,7 +67,6 @@ export default {
 }
 
 .menu_size__ {
-    background-color: rgba(0, 0, 0, 0.716);
     min-height: 50%;
     border-radius: 16px;
     padding: 50px;
