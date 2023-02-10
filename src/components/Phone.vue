@@ -224,7 +224,7 @@ export default {
     left: 50%;
     background: #131313;
     box-shadow: none;
-    z-index: 999;
+    z-index: 1;
     top: 8px;
     width: 14px;
     height: 14px;

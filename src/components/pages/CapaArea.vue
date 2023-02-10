@@ -24,7 +24,7 @@
     width: 100%;
     height: 100%;
     background: url('../../assets/images/explain-bg-1.jpg');
-    /* background-color: rgba(0, 0, 0, 0.507); */
+    background-color: rgba(0, 0, 0, 0.507);
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: darken;

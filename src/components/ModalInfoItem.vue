@@ -272,6 +272,7 @@
 .background__items_option {
     display: flex;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.716);
     align-items: center;
     max-width: 400px;
     min-height: 619px;
@@ -280,6 +281,11 @@
     box-shadow: rgb(255 255 255 / 10%) 0px 1px 1px 0px inset, rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;
     overflow: auto;
     max-height: 619px;
+    color:#fff;
+}
+.background__items_option input, .background__items_option textarea {
+  color:#fff;
+  background-color: transparent;
 }
 .img-size{
     width: 100%;

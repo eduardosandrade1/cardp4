@@ -112,7 +112,7 @@ export default {
             value: '',
             name: 'Título',
             time: (i / 100),
-            description: 'Descrição do item',
+            description: '',
             price: 0.99,
             classe_titilo: ['title'],
             classe_descricao: ['description'],
@@ -242,6 +242,7 @@ export default {
 </script>
   
 <style>
+
 #container__items {
   width: 100%;
   display: flex;

@@ -7,22 +7,26 @@
                   {{ title }}
                 </h1>
                 <div class="qrcode">
-                    <vue-qrcode
-                        :value="valueQrCode"
-                        :width="400"
-                        :type="'image/png'"
-                        :color="{ dark: '#000000ff', light: '#ffffffff' }"
-                    />
+                  <vue-qrcode
+                  :value="valueQrCode"
+                  :width="220"
+                  :type="'image/jpg'"
+                  :color="{ dark: '#000000', light: '#fff0' }"
+                  class="qrcode-img"
+                  />
+                  <!-- <img src="../assets/images/cardp.png" alt="" class="img-logo-qrcode"> -->
                 </div>
                 <p class="text-danger hidden-print">{{ message }}</p>
 
-                <div class="user-box">
+                <!-- <div class="user-box">
                     <input type="email" name="" id="" class="input-border-black">
                     <label for="" class="hidden-print">Email</label>
+                </div> -->
+                <div class="btns-modal">
+                  <button class="btn-modal">Enviar</button>
+                  <button class="btn-modal" @click="imprimir()">Imprimir</button>                  
                 </div>
 
-                <button class="btn btn-primary hidden-print">Enviar</button>
-                <button class="btn btn-primary hidden-print" @click="imprimir()">Imprimir</button>
             </div>
         </div>
     
@@ -40,14 +44,10 @@ export default {
     },
     methods: {
         close(){
-<<<<<<< HEAD
-          window.location.reload();
-=======
           window.location.reload()
         },
         imprimir(){
           window.print()
->>>>>>> 4ef4395bb274299da65d3c2ba8abb37a879d4c21
         }
     }
 }
@@ -65,20 +65,20 @@ export default {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.775); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
-    margin: 10px auto; /* 15% from the top and centered */
+    background-color: #efefef;
+    margin: 10vh auto; /* 15% from the top and centered */
     padding: 20px;
     border-radius: 15px;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 30%; /* Could be more or less, depending on screen size */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: inset -1px -1px 15px 5px #a0a0a0;
 }
 
 .content {
@@ -102,6 +102,24 @@ export default {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.img-logo-qrcode {
+  position: absolute;
+    /* top: -274px; */
+    width: 100px;
+}
+
+.qrcode {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.qrcode-img{
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .user-box {
@@ -135,6 +153,28 @@ export default {
   left: 0;
   color: #000000;
   font-size: 12px;
+}
+
+.btns-modal {
+  padding: 40px 5px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-modal {
+  color: #fff;
+  background-color:#000;
+  margin: 0 2rem;
+  padding: 0.6rem 15%;
+  border-radius: 10px;
+  box-shadow: 10px -5px 1em rgba(0, 0, 0, 0.253),
+    -5px 10px 1em rgba(255, 255, 255, 0.048);
+  cursor: pointer; 
+}
+
+.btn-modal:hover {
+    transition: .7s;
+    transform: translateY(-10px);
 }
 
 a {

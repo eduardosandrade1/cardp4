@@ -2,12 +2,6 @@
 
     <div class="container__">
         <div class="menu_size__">
-            <h1>
-                Olá, bem vindo.
-            </h1>
-            <h3 class="text-center no-focus">
-                Podemos começar arrastando os itens até o celular
-            </h3>
             <div 
                 class="div_item" 
                 v-for="item in getMenu()" 
@@ -73,7 +67,7 @@ export default {
 }
 
 .menu_size__ {
-    background-color: rgb(168, 168, 168, 0.13);
+    background-color: rgba(0, 0, 0, 0.716);
     min-height: 50%;
     border-radius: 16px;
     padding: 50px;

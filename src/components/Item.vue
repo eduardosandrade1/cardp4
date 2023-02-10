@@ -97,8 +97,9 @@
 </script>
 
 <style>
-    .input_item_div {
+    .input_item_div, .input_item_div input, .input_item_div img {
         display: flex;
+        cursor: pointer;
     }
     .input_item_div input{
         font-size:  20pt;

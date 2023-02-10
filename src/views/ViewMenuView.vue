@@ -90,12 +90,6 @@ export default {
 <style>
 
 .container__view{
-<<<<<<< HEAD
-    /* display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center; */
-=======
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -107,7 +101,6 @@ export default {
     min-height: 100%;
     background-color: #F8F8F8;
     max-height: 100%;
->>>>>>> 4ef4395bb274299da65d3c2ba8abb37a879d4c21
 }
 
 .itens {

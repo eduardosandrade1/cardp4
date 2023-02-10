@@ -1,11 +1,10 @@
 @import './base.css';
 
 #app {
-  display: flex;
-  padding: 2rem;
+  /* padding: 2rem; */
   font-weight: normal;
   height: 100vh;
-  /* background: url('./images/bg4.jpg'); */
+  /* background: url('./images/bg-eat-4.jpg'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: darken;
@@ -134,6 +133,20 @@ input[type="file"] {
 .btn-enter:hover {
   transition: width 1s, height 2s, background-color 2s, transform 2s;
   background-color: rgb(0, 0, 0);
+}
+
+.btn {
+  margin: 0 2rem;
+  padding: 0.6rem 15%;
+  border-radius: 10px;
+  box-shadow: 10px -5px 1em rgba(0, 0, 0, 0.253),
+    -5px 10px 1em rgba(255, 255, 255, 0.048);
+  cursor: pointer; 
+}
+
+.btn:hover {
+    transition: .7s;
+    transform: translateY(-10px);
 }
 
 .no-focus {
