@@ -1,9 +1,9 @@
 <template>
 <div class="explain-area flip" id="p1">
     <div class="content">
-        <div class="text">
+        <div class="text color-white">
             <p>
-                Este é o cardápio online :)
+                Este é o  online :)
             </p>
             <p>
                 Faça um você mesmo!
@@ -32,9 +32,9 @@
 }
 
 .container__login .explain-area .text{
-    color: white;
     font-size: 2.1vw;
 }
+
 .container__login .explain-area .content {
     display: flex;
     flex-direction: column;
@@ -56,5 +56,8 @@
     display: flex;
     align-items: center;
 }
-
+#c1:checked ~ .flip-book #p1 p, #c1:checked ~ .flip-book #p1 label {
+    color: transparent !important;
+    transition: 1s;
+}
 </style>
