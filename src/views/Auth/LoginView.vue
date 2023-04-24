@@ -9,18 +9,18 @@
     <div class="container__login flip-book hidden-print">
 
         <loginArea class="hidden-print" />
-        <CapaArea class="hidden-print" />
-        <CadastrarView class="hidden-print" />
+        <CoverArea class="hidden-print" />
+        <RegisterView class="hidden-print" />
     </div>
 
 </template>
 
 <script>
 
-    import Loading from '../components/Loading.vue'
-    import LoginArea from '../components/pages/LoginArea.vue'
-    import CapaArea from '../components/pages/CapaArea.vue'
-    import CadastrarView from './CadastrarView.vue'
+    import Loading from '../../components/Loading.vue'
+    import LoginArea from '../../components/Auth/LoginArea.vue'
+    import CoverArea from '../../components/Auth/CoverArea.vue'
+    import RegisterView from './RegisterView.vue'
 
     export default {
         data() {
@@ -31,8 +31,8 @@
         components: {
             Loading,
             LoginArea,
-            CapaArea,
-            CadastrarView,
+            CoverArea,
+            RegisterView,
         }
     }
 

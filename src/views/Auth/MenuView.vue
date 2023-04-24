@@ -1,6 +1,6 @@
 <script setup>
-import MenuVue from '../components/MenuVue.vue'
-import ModalError from '../components/ModalError.vue'
+import MenuVue from '../../components/Config/MenuVue.vue'
+import ModalError from '../../components/ModalError.vue'
 </script>
 
 <template>

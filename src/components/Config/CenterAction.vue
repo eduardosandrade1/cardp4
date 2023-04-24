@@ -1,13 +1,18 @@
 <template>
 
+    <div class="btn_expand">
+        <input type="checkbox" id="menu_general" class="no-visibility">
+    </div>
     <div class="option-items">
-        <button class="btn" type="button" @click="save(true)">
-            <img src="../assets/icons/play-52.png" alt="icone de play" class="icon">
-            Simular
-        </button>
-        <button class="btn" type="button" @click="editBackground()">
-            <img src="../assets/icons/picture-32.png" alt="icone de imagem" class="icon">
-        </button>
+        <div class="buttons">
+            <button class="btn" type="button" @click="save(true)">
+                <img src="../../assets/icons/play-52.png" alt="icone de play" class="icon">
+                Simular
+            </button>
+            <button class="btn" type="button" @click="editBackground()">
+                <img src="../../assets/icons/picture-32.png" alt="icone de imagem" class="icon">
+            </button>
+        </div>
     </div>
 
 </template>
@@ -30,6 +35,15 @@
     align-items: center;
     justify-content: center;
     margin: 10px 0;
+}
+
+.no-visibility {
+    visibility: hidden;
+}
+
+.btn_expland #menu_general:checked > .option-items {
+    transition: 1s ease;
+    opacity: 0;
 }
 </style>
 

@@ -37,7 +37,7 @@
 </template>
 
 <script>
-    import IconActionItem from './icons/IconActionItem.vue';
+    import IconActionItem from '../icons/IconActionItem.vue';
 
     export default {
         name: "Item",
@@ -126,7 +126,7 @@
         display: flex;
         width: 100%;
         border-top: 6px;
-        background-color: #F8F8F8;
+        /* background-color: #F8F8F8; */
         max-height: 76px;
         border-radius: 15px;
         font-size: 10pt;

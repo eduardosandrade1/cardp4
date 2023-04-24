@@ -27,13 +27,13 @@
                 <label for="">Alinhamento</label>
                 <div class="options-style">
                   <div class="text-start" @click="alignClass(`text-start`)">
-                    <img src="../assets/icons/align-left.png" alt="" class="icon">
+                    <img src="../../assets/icons/align-left.png" alt="" class="icon">
                   </div>
                   <div class="text-center" @click="alignClass(`text-center`)">
-                    <img src="../assets/icons/align-center.png" alt="" class="icon">
+                    <img src="../../assets/icons/align-center.png" alt="" class="icon">
                   </div>
                   <div class="text-end" @click="alignClass(`text-end`)">
-                    <img src="../assets/icons/align-right.png" alt="" class="icon">
+                    <img src="../../assets/icons/align-right.png" alt="" class="icon">
                   </div>
                 </div>
                 <label for="">Cor da fonte</label>
@@ -84,6 +84,29 @@
                       <input type="text" name="" maxlength="20" placeholder="Título do item" v-model="itemName">
                       <label>Título</label>
                   </div>
+                  <label for="">Cor título</label>
+                  <div class="options-style">
+                    <div class="primary" @click="addColor('color-primary')">
+                      <div class="div-color-primary">
+
+                      </div>
+                    </div>
+                    <div class="secondary" @click="addColor('color-secondary')">
+                      <div class="div-color-secondary">
+
+                      </div>
+                    </div>
+                    <div class="tertiary" @click="addColor('color-tertiary')">
+                      <div class="div-color-tertiary">
+
+                      </div>
+                    </div>
+                    <div class="quartiary" @click="addColor('color-quartiary')">
+                      <div class="div-color-quartiary">
+
+                      </div>
+                    </div>
+                  </div>
                   <div class="user-box">
                       <input type="number" name="" step='0.01' maxlength="20" placeholder="Preço" v-model="itemPrice">
                       <label>Preço</label>
@@ -94,16 +117,16 @@
                     <label for="">Alinhamento</label>
                   <div class="options-style">
                     <div class="text-start" @click="alignClass(`text-start`)">
-                      <img src="../assets/icons/align-left.png" alt="" class="icon">
+                      <img src="../../assets/icons/align-left.png" alt="" class="icon">
                     </div>
                     <div class="text-center" @click="alignClass(`text-center`)">
-                      <img src="../assets/icons/align-center.png" alt="" class="icon">
+                      <img src="../../assets/icons/align-center.png" alt="" class="icon">
                     </div>
                     <div class="text-end" @click="alignClass(`text-end`)">
-                      <img src="../assets/icons/align-right.png" alt="" class="icon">
+                      <img src="../../assets/icons/align-right.png" alt="" class="icon">
                     </div>
                   </div>
-                  <label for="">Cor da fonte</label>
+                  <label for="">Cor título</label>
                   <div class="options-style">
                     <div class="primary" @click="addColor('color-primary')">
                       <div class="div-color-primary">
@@ -147,7 +170,7 @@
             </div>
 
             <div class="d-flex-text-center" v-else>
-              <p>
+              <p class="decoration-[#50d71e]">
                 Clique em um item para editá-lo.
               </p>
             </div>

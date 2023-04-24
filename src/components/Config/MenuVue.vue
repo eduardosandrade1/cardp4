@@ -6,15 +6,12 @@
 
     <div class="actions">
       <MenuSize @dragenter.prevent @dragover.prevent />
-      <!-- <button class="btn btn-primary btn-lg" @click="save()">
-        Salvar
-      </button> -->
     </div>
 
     <Phone @dragenter.prevent @dragover.prevent ondragstart="return false;" ondrop="return false;"
       :show-action="showActionItems" ref="Phone" />
 
-    <ActionGeneral />
+    <CenterAction />
 
     <ModalInfoItem :itemphonearray="itemphonearray" :chave="chaveArrItem" />
 
@@ -27,16 +24,16 @@
 </template>
   
 <script>
-import Menu from '../services/menu';
+import Menu from '../../services/menu';
 import Phone from './Phone.vue';
 import MenuSize from './MenuSize.vue';
 import ModalInfoItem from './ModalInfoItem.vue';
 import ModalQrCode from './ModalQrCode.vue';
-import ModalError from './ModalError.vue';
-import Loading from './Loading.vue';
-import ActionGeneral from './ActionGeneral.vue';
+import ModalError from '../ModalError.vue';
+import Loading from '../Loading.vue';
+import CenterAction from './CenterAction.vue';
 
-import menu from '../services/menu';
+import menu from '../../services/menu';
 
 export default {
   data() {
@@ -66,7 +63,7 @@ export default {
     ModalQrCode,
     ModalError,
     Loading,
-    ActionGeneral,
+    CenterAction,
   },
   methods: {
     getCurrentUrl() {

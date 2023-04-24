@@ -78,7 +78,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: inset -1px -1px 15px 5px #a0a0a0;
 }
 
 .content {

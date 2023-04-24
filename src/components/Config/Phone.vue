@@ -9,20 +9,20 @@
             </div>
         </div>
         <div class="top__bar">
-            <div class="left invert">
+            <div class="left ">
                 <span class="time">
                     {{hour}}
                 </span>
             </div>
-            <div class="right invert">
+            <div class="right ">
                 <div class="mobile-network">
-                    <img class="icon" src="../assets/icons/signal.png" alt="" >
+                    <img class="icon" src="../../assets/icons/signal.png" alt="" >
                 </div>
                 <div class="wifi">
-                    <img class="icon" src="../assets/icons/wifi.png" alt="" >
+                    <img class="icon" src="../../assets/icons/wifi.png" alt="" >
                 </div>
                 <div class="icon battery">
-                    <img class="icon" src="../assets/icons/icon-battery.png" alt="" >
+                    <img class="icon" src="../../assets/icons/icon-battery.png" alt="" >
                 </div>
 
             </div>

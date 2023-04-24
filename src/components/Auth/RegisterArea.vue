@@ -1,5 +1,6 @@
 <template>
     <Loading v-show="showLoading" />
+
     <div class="register-area flip" id="p3">
         <div class="container-center">
             <form v-on:submit="doRegister($event)">
@@ -50,13 +51,11 @@
 </template>
 
 <script>
+import Loading from '../../components/Loading.vue'
 
-import Loading from '../components/Loading.vue'
-
-import register from '../services/register'
+import register from '../../services/register'
 
 export default {
-
     data() {
         return {
             nome: '',
@@ -75,7 +74,7 @@ export default {
     },
     methods: {
         doRegister(e) {
-            if ( ! this.validatePassword() ) {
+            if (!this.validatePassword()) {
                 e.preventDefault();
             }
 
@@ -86,7 +85,7 @@ export default {
                 password_confirm: this.password_confirm,
             };
 
-            register.do(params).then( res => {
+            register.do(params).then(res => {
 
                 console.log(res)
 
@@ -98,7 +97,7 @@ export default {
 
         },
         validatePassword() {
-            for( let validate in this.validations ) {
+            for (let validate in this.validations) {
                 if (this.validations[validate] == 'invalid') {
                     return false
                 }
@@ -107,57 +106,55 @@ export default {
                 this.error = "As senhas não coincidem";
                 return false
             }
-            
+
             this.error = ""
             return true
         }
     },
     computed: {
         password: {
-            set (val) {
+            set(val) {
                 this.password = val
-                if ( val.length >= 8 ) {
+                if (val.length >= 8) {
                     this.validations.qtdMinimium = 'valid'
                 } else {
                     this.validations.qtdMinimium = 'invalid'
                 }
 
                 let specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-                if ( val.match(specialChars) ) {
+                if (val.match(specialChars)) {
                     this.validations.specialChars = 'valid'
                 } else {
                     this.validations.specialChars = 'invalid'
                 }
 
                 let upperCaseLetters = /[A-Z]/g;
-                if ( val.match(upperCaseLetters) ) {
+                if (val.match(upperCaseLetters)) {
                     this.validations.uppercase = 'valid'
                 } else {
                     this.validations.uppercase = 'invalid'
                 }
 
                 let number = /[0-9]/g;
-                if ( val.match(number) ) {
+                if (val.match(number)) {
                     this.validations.numberMinimium = 'valid'
                 } else {
                     this.validations.numberMinimium = 'invalid'
                 }
             },
-            get () {
+            get() {
                 return this.password
             }
         }
     },
     components: {
-        Loading,
+        Loading
     }
-
 }
-
 </script>
 
-<style>
 
+<style scoped>
 .container-center {
     width: 100%;
     margin: auto;
@@ -181,6 +178,7 @@ export default {
     font-size: 12px;
     margin: 10px 0;
 }
+
 .role-password ul {
     text-decoration: none;
     list-style: none;
@@ -188,15 +186,14 @@ export default {
 }
 
 .valid:before {
-  position: relative;
-  color: green;
-  content: "✔";
+    position: relative;
+    color: green;
+    content: "✔";
 }
 
 .invalid:before {
-  position: relative;
-  color: red;
-  content: "X";
+    position: relative;
+    color: red;
+    content: "X";
 }
-
 </style>

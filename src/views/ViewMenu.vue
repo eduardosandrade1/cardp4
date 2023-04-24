@@ -22,8 +22,8 @@
 
 <script>
 
-import Item from '../components/Item.vue'
-import PreviewItem from '../components/PreviewItem.vue';
+import Item from '../components/Config/Item.vue'
+import PreviewItem from '../components/Config/PreviewItem.vue';
 
 import menu from '../services/menu'
 
